@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Munin{% endblock title %}</title>
+    <meta name="description"
+          content="Prosjekt for faget TDT4140 Programvareutvikling">
+    <link rel="shortcut icon" type="image/ico" href="{% static "favicon.ico" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "lib/css/bootstrap-responsive.min.css" %}">
+    {% block link %}
+    {% endblock link %}
+</head>
+<body>
+<!-- { % include 'sidebar.html' %} will add sidebar once it is added -->
+
+<div id="content">
+        {% block content %}
+        {% endblock content %}
+</div>
+
+<script type="text/javascript" src="{% static "lib/js/bootstrap.min.js" %}"></script>
+{% block script %}
+{% endblock script %}
+</body>
+</html>
