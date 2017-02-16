@@ -38,13 +38,24 @@
                         Munin
                     </a>
                 </li>
-                {% if request.user.is_authenticated %}
+                {% if not request.user.is_authenticated %}
                     <li>
-                        <a href="{% url 'logout' %}">Log ut</a>
+                        <a href="{% url 'login' %}">Log inn</a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="{% url 'login' %}">Log inn</a>
+                        <a href="{% url 'profile' user.username %}">My Profile</a>
+                    </li>
+                     <li>
+                        <a href="#">Select classes</a>
+                    </li>
+                     <li>
+                        <a href="#">Ask questions</a>
+                    </li>
+                {% endif %}
+                {% if user.is_superuser %}
+                    <li>
+                        <a href="{% url 'admin:index' %}">Admin</a>
                     </li>
                 {% endif %}
                 <li>
@@ -53,6 +64,12 @@
                 <li>
                     <a href="{% url 'contact' %}">Contact info</a>
                 </li>
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'logout' %}">Log ut</a>
+                    </li>
+                {% endif %}
+
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
