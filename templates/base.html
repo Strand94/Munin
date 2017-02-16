@@ -9,16 +9,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Munin</title>
+
+    <title>{% block title %}Munin{% endblock title %}</title>
 
     <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" type="text/css" href="{% static "lib/css/bootstrap.css" %}">
         <link rel="stylesheet" type="text/css" href="{% static "lib/css/bootstrap.min.css" %}">
 
-
-
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{% static "lib/css/simple-sidebar.css" %}">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/ico" href="{% static "favicon.ico" %}">
+
 
 
 </head>
