@@ -1,4 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<h3> Welcome to Munin </h3>
+    <!-- CSS -->
+    <style>
+        .frontpage-header{
+            text-align: center;
+        }
+    </style>
+
+    <!-- Actuall page content starts here -->
+    <div class="container-fluid">
+        <!-- Toggle button for the sidebar -->
+        <a href="#menu-toggle" id="menu-toggle">
+            <span style="color: #000000; font-size: 30px" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+        </a>
+
+        <!-- Text -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="frontpage-header">Welcome to Munin</h1>
+                <p class="frontpage-header">Munin is an interactive platform to give instant feedback on classes, and to ask questions, and get them answered in a quick matter </p>
+            </div>
+        </div>
+</div>
 {% endblock content %}
