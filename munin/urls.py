@@ -19,5 +19,8 @@ from apps.staticpages.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', FrontPage, name="home")
+    url(r'^$', FrontPage, name="home"),
+    url(r'^about/', about, name="about"),
+    url(r'^contact/', contact, name="contact")
+
 ]
