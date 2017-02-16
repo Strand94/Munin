@@ -6,6 +6,9 @@
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
 .idea/dataSources
+.idea/misc.xml
+.idea/modules.xml
+.gitignore
 
 #virtualenv
 venv/
