@@ -1,13 +1,8 @@
 # User-specific stuff:
-.idea/munin.iml
-.idea/workspace.xml
+.idea
 .idea/tasks.xml
 .idea/dictionaries
-.idea/vcs.xml
 .idea/jsLibraryMappings.xml
-.idea/dataSources
-.idea/misc.xml
-.idea/modules.xml
 .gitignore
 
 #virtualenv

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'registration.User'
 
+LOGIN_REDIRECT_URL = 'home'
 
 INSTALLED_APPS = [
     'django.contrib.admin',

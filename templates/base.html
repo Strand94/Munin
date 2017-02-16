@@ -38,9 +38,15 @@
                         Munin
                     </a>
                 </li>
-                <li>
-                    <a href="#">Log in</a>
-                </li>
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'logout' %}">Log ut</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">Log inn</a>
+                    </li>
+                {% endif %}
                 <li>
                     <a href="{% url 'about' %}">About</a>
                 </li>
