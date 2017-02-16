@@ -1,12 +1,19 @@
 <! About the project, team, and task>
 {% extends "base.html" %}
+{% load static %}
 {% block title %}About{% endblock %}
 {% block content %}
+    <p> <font size="5"> About Munin </font> </p>
     <p> Munin is a project developed by 4 masters students at NTNU for TDT4140 - Programvareutvikling. </p>
-    <p> The purpose of the project is revolutionizing the teaching experience at universities around the world. </p>
+    <p> The purpose of the project is revolutionizing the teaching experience at universities around the world, </p>
+    <p> And the man responsible for all of this is this man: Pekka Abrahamsson</p>
+    <img src="{% static "images/pekka.jpg" %}" alt="Pekka Abrahamsson" style="width:265px;height:265px;">
     <p> To achieve this, we decided to create a webpage, the likes of which the world has never seen</p>
-    <p> </p>
-    
+    <p> Munin helps students ask questions and get answers from lecturers</p>
+    <p> Students enroll in a class and are connected to a subject</p>
+    <p> Once there, they may ask questions, and upvote previously asked questions, to let the lecturer know</p>
+    <p> what the students want explained. They can also search through already answered questions to get answers.</p>
+
 
 
 {% endblock content %}
