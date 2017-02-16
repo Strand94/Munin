@@ -30,6 +30,9 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+AUTH_USER_MODEL = 'registration.User'
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.staticpages',
+    'apps.registration',
 ]
 
 MIDDLEWARE = [
@@ -114,6 +118,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+MEDIA_ROOT = 'uploads/'
+MEDIA_URL = '/uploads/'
 
 
 # Static files (CSS, JavaScript, Images)
