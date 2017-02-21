@@ -3,19 +3,46 @@
 {% load static %}
 {% block title %}About{% endblock %}
 {% block content %}
+    <style>
+        h2{
+
+        }
+        h3{
+
+        }
+        h5{
+
+        }
+
+    </style>
     <h2> About Munin </h2>
-    <p> Munin is a project developed by 4 masters students at NTNU for TDT4140 - Software Development. </p>
-    <p> The purpose of the project is revolutionizing the teaching experience at universities around the world, </p>
-    <p> and the man responsible for all of this is this man: Pekka Abrahamsson</p>
+        <p>Munin is a web browser based learning enhancement tool for universities and learning institutions,
+        based upon making<br> feedback between lecturer and student easier and more efficient.</p>
+        <h5>Munin:</h5>
+            <ul>
+                <li>Pools together questions in classes, and makes the most popular questions the most prominent.</li>
+                <li>Saves answered questions, letting student search through a plethora of answers between classes.</li>
+                <li>Let the students themselves have a crack at answering questions, with the teacher letting the
+                    best answer stand.</li>
+            </ul>
+
+    <h3> About the team and the project</h3>
+        <p>Munin is a project developed by 4 masters students at NTNU for the subject TDT4140 - Software Development. </p>
+        <h5>The team members are:</h5>
+            <ul>
+                <li>Andreas - Team leader and backend developer</li>
+                <li>Hermann - Frontend developer</li>
+                <li>Truls - Backend developer</li>
+                <li>Øyvind - Frontend developer and responsible for philosophical matters</li>
+            </ul>
+        <p>The project task was as follows: To revolutionize the learning process at universities around the world,
+        using bot technology.</p>
+    <p>From personal experience, and from our exploration research, we concluded that improving feedback between</p>
+    <p>professors and students was the best way to achieve this.</p>
+    <h2>Pekka Abrahamsson</h2>
+    <p>Our professor, the man behind the project</p>
     <a href="https://www.ntnu.no/ansatte/pekkaa">
         <img src="{% static "images/pekka.jpg" %}" alt="Pekka Abrahamsson" style="width:265px;height:265px;">
     </a>
-    <p> To achieve this, we decided to create a webpage, the likes of which the world has never seen</p>
-    <p> Munin helps students ask questions and get answers from lecturers</p>
-    <p> Students enroll in a class and are connected to a subject</p>
-    <p> Once there, they may ask questions, and upvote previously asked questions, to let the lecturer know</p>
-    <p> what the students want explained. They can also search through already answered questions to get answers.</p>
-
-
 
 {% endblock content %}
