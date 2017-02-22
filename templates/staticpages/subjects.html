@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ user.school }}{% endblock title %}
+{% block content %}
+    <h1 style="font-size: 25px">My courses </h1>
+        <p>You have not registerd any courses</p>
+
+    <h1 style="font-size: 25px"> List of courses on {{ user.school }} </h1>
+    {% for subject in courses %}
+        {{ subject.name }}<br>
+    {% endfor %}
+{% endblock content %}
