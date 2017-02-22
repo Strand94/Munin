@@ -40,16 +40,16 @@
                     </li>
                 {% else %}
                     <li>
-                        <a href="{% url 'profile' user.username %}">My Profile</a>
+                        <a href="{% url 'profile' request.user.username %}">My Profile</a>
                     </li>
                      <li>
-                        <a href="#">Select classes</a>
+                        <a href="{% url 'subject' %}">Select classes</a>
                     </li>
                      <li>
                         <a href="#">Ask questions</a>
                     </li>
                 {% endif %}
-                {% if user.is_superuser %}
+                {% if request.user.is_superuser %}
                     <li>
                         <a href="{% url 'admin:index' %}">Admin</a>
                     </li>

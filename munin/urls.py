@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^$', FrontPage, name="home"),
     url(r'^about/', about, name="about"),
     url(r'^contact/', contact, name="contact"),
+    url(r'^subjects/', subject, name="subject"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
