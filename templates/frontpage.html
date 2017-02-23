@@ -1,10 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
     <!-- CSS -->
     <style>
         .frontpage-header{
             text-align: center;
         }
+        .munin_image{
+            height: 500px;
+            width: 600px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 40px;
+        }
+
     </style>
 
     <!-- Actuall page content starts here -->
@@ -14,29 +24,9 @@
             <div class="col-lg-12">
                 <h1 class="frontpage-header">Welcome to Munin</h1>
                 <p class="frontpage-header">Munin is an interactive platform to give instant feedback on classes, to ask questions, and get them answered in a timely matter </p>
+                <img align="middle" src="{% static "images/cool-raven-transparent-0.png" %}" class="munin_image"">
             </div>
         </div>
-    </div> <!-- Hva gjør denne end-diven? -->
 
-    <!-- La inn litt lorem ipsum -->
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas ex vitae velit venenatis, sed ullamcorper ipsum semper. Curabitur lobortis vel mi eu finibus. Proin finibus, nisi quis pretium pulvinar, orci tellus consequat orci, quis aliquet neque justo ac erat. Integer luctus quis leo non porttitor. Proin varius at mauris id varius. Aliquam laoreet dolor in fermentum interdum. Aliquam at nisi sodales, ultricies libero in, posuere mauris. Curabitur gravida vitae nisl sed gravida. Nullam vitae quam vitae ante dignissim feugiat.
-    </p>
 
-    <p>
-        Etiam eget lectus non mauris lacinia hendrerit vitae quis est. Suspendisse semper nibh leo. Sed eu purus ligula. Sed ac ullamcorper massa, in finibus est. Integer sed erat eleifend, imperdiet orci a, elementum urna. Sed fermentum dignissim lorem, in ullamcorper ex feugiat quis. Aliquam lorem turpis, hendrerit a auctor vitae, faucibus vel massa. Duis posuere, lacus et mattis varius, nulla arcu tincidunt ipsum, ac feugiat turpis ante sed tortor. Duis ut ligula et enim efficitur auctor. Phasellus blandit neque sem, eu molestie ipsum tincidunt quis. Duis mattis nec sem vel elementum. Nam maximus vehicula mi eu dapibus. Aenean id nulla ac lacus consectetur imperdiet. Morbi non iaculis justo. In tincidunt nisl at nibh auctor vestibulum. Ut blandit orci ex, tincidunt semper metus vulputate eget.
-    </p>
-    <p>
-        Vestibulum condimentum elit in massa fringilla auctor. Ut pellentesque ligula libero, non convallis turpis suscipit id. Nulla neque nulla, rutrum nec laoreet sed, condimentum quis neque. Maecenas ornare risus ut metus sodales interdum non a diam. Morbi vel condimentum tortor. Nullam luctus velit at nisi placerat, ut sodales turpis luctus. Cras at velit ac libero vehicula convallis a at massa. Aenean volutpat metus ligula, vitae laoreet urna fermentum vel. Nullam sagittis porttitor ornare. Nam id bibendum justo. Aenean faucibus quam a lorem blandit cursus. Aenean fermentum enim sed lacus dictum, nec vehicula nulla scelerisque. Suspendisse id urna nisi. Proin ultricies ligula quam, et tempus libero faucibus non. Etiam lobortis enim dui, non vulputate felis sollicitudin ut.
-    </p>
-    <p>
-        Donec eu finibus nunc. In vitae metus tempus, pharetra dolor vitae, blandit neque. Morbi malesuada elit quis euismod dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris dignissim mollis ligula eget malesuada. Curabitur aliquet faucibus ligula sodales accumsan. Integer sagittis lorem iaculis, maximus nisl et, dapibus lacus. Morbi lobortis bibendum sem eu laoreet. Aenean quis orci feugiat, pretium enim sed, viverra ipsum.
-    </p>
-    <p>
-        Vestibulum gravida purus id odio commodo imperdiet. Curabitur et lacus a nulla malesuada molestie. Etiam porttitor gravida metus eu laoreet. Nam id lacus consectetur, tempor purus non, rutrum quam. Aenean elementum suscipit lorem. Vestibulum accumsan lacinia eros, eget scelerisque tortor consequat a. Sed diam est, malesuada at dapibus vel, tempus nec est. Maecenas eu blandit diam.
-    </p>
-    <p>
-        Etiam eget lectus non mauris lacinia hendrerit vitae quis est. Suspendisse semper nibh leo. Sed eu purus ligula. Sed ac ullamcorper massa, in finibus est. Integer sed erat eleifend, imperdiet orci a, elementum urna. Sed fermentum dignissim lorem, in ullamcorper ex feugiat quis. Aliquam lorem turpis, hendrerit a auctor vitae, faucibus vel massa. Duis posuere, lacus et mattis varius, nulla arcu tincidunt ipsum, ac feugiat turpis ante sed tortor. Duis ut ligula et enim efficitur auctor. Phasellus blandit neque sem, eu molestie ipsum tincidunt quis. Duis mattis nec sem vel elementum. Nam maximus vehicula mi eu dapibus. Aenean id nulla ac lacus consectetur imperdiet. Morbi non iaculis justo. In tincidunt nisl at nibh auctor vestibulum. Ut blandit orci ex, tincidunt semper metus vulputate eget.
-    </p>
-    <!-- Bare å fjerne start-tag på kommentarfelttet her for å kommentere ut lorem ipsum -->
 {% endblock content %}
