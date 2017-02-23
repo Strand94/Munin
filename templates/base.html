@@ -1,8 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    {% load static %}
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
@@ -17,6 +18,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{% static "lib/css/simple-sidebar.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/ico" href="{% static "favicon.ico" %}">
@@ -97,6 +100,10 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script>
+
+    <div id="footer">
+        <p>Dette er en footer der det kan stå kontaktinfo og/eller hva enn som er fornuftig å ha her.</p>
+    </div>
 
 </body>
 

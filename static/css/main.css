@@ -1,0 +1,30 @@
+
+/**
+ * Footer Styles
+ */
+
+/** Denne legger seg under alt content på siden, så den vil ikke alltid være på bunnen av siden hvis det ikke
+* er nok content
+*/
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
+/** Denne legger seg på bunnen av siden uansett om det er nok content eller ikke, men vil også
+* legge seg over content dersom det er nok content til at man kan scrolle.
+*/
+#footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background:#999;
+  text-align: center;
+}
