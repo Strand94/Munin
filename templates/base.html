@@ -39,7 +39,7 @@
                 </li>
                 {% if not request.user.is_authenticated %}
                     <li>
-                        <a href="{% url 'login' %}">Log inn</a>
+                        <a href="{% url 'auth_login' %}">Login</a>
                     </li>
                 {% else %}
                     <li>
@@ -65,7 +65,7 @@
                 </li>
                 {% if request.user.is_authenticated %}
                     <li>
-                        <a href="{% url 'logout' %}">Log ut</a>
+                        <a href="{% url 'auth_logout' %}">Logout</a>
                     </li>
                 {% endif %}
 

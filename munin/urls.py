@@ -19,13 +19,23 @@ from django.conf.urls.static import static
 from django.conf.urls import include, url
 from django.contrib import admin
 from apps.staticpages.views import *
+from registration.backends.hmac.views import RegistrationView
+from apps.registration.form import MyCustomUserForm
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^user/', include('apps.registration.urls'), name='accounts'),
+    url(r'^accounts/register/$',
+        RegistrationView.as_view(
+          form_class=MyCustomUserForm
+      ),
+      name='registration_register',
+      ),
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^$', FrontPage, name="home"),
     url(r'^about/', about, name="about"),
     url(r'^contact/', contact, name="contact"),
-    url(r'^subjects/', subject, name="subject"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^subjects/$', subject, name="subject"),
+    url(r'^subjects/(?P<pk>[0-9]+)$', subject_detail, name="subject_detail"),
+      ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

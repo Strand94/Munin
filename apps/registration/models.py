@@ -32,18 +32,13 @@ class User(AbstractUser):
             return self.username
         return first_name + ' ' + self.last_name
 
+    def get_lecturers(self):
+        if self.role == 'P':
+            return True
+        else: return False
+
     def __str__(self):
         return self.username
 
-class Course(models.Model):
-    name = models.CharField(max_length=50)
-    course_id = models.CharField(max_length=7, primary_key=True)
-    lecturer = models.ForeignKey(User)
-    YEAR_CHOICES = []
-    for r in range(2000, (datetime.datetime.now().year + 2)):
-        YEAR_CHOICES.append((r, r))
-    year = models.IntegerField(choices=YEAR_CHOICES)
-    about = models.TextField(blank=True)
 
-    def __str__(self):
-        return self.course_id+' - '+self.name
+

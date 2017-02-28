@@ -1,12 +1,44 @@
-{% extends 'base.html' %}
-
-{% block title %}Login{% endblock %}
+{% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+    <style>
+
+    .login{
+        position: fixed;
+        top: 20%;
+        left: 30%;
+        width: 500px;
+        margin-top: -50px;
+        margin-left: -100px;
+        font-size: 20px;
+        }
+    .login_button{
+        text-align: center;
+        width: 400px;
+        font-size: 35px;
+    }
+    .login_text{
+        text-align: center;
+        width: 400px;
+        padding-top: 25px;
+    }
+    </style>
+    <div class="login">
+        <div>
+            <form method="post" action=".">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="login_button">
+                    <input class="btn btn-primary" type="submit" value="{% trans 'Log in' %}" />
+                    <input class="form-group" type="hidden" name="next" value="{{ next }}" />
+                </div>
+            </form>
+        </div>
+        <div class="login_text">
+            <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
+            <p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+        </div>
+    </div>
 {% endblock %}
+av

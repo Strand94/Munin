@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.staticpages',
     'apps.registration',
+    'apps.questions',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +87,7 @@ DATABASES = {
     }
 }
 
+ACCOUNT_ACTIVATION_DAYS = 7
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -132,3 +133,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     'static',
 )
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST_USER='munin.app@gmail.com'
+EMAIL_HOST_PASSWORD='hybrida123'
+SERVER_EMAIL='munin.app@gmail.com'
+DEFAULT_FROM_EMAIL="Munin"

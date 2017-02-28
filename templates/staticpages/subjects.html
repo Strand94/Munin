@@ -18,10 +18,9 @@
             {% for subject in courses %}
             <tbody>
                 <tr>
-                    <td width="40%">{{ subject.course_id }}</td>
+                    <td width="40%"><a href="{{ subject.pk }}">{{ subject.course_id }}</a></td>
                     <td width="60%">{{ subject.name }}</td>
                 </tr>
-
             {% endfor %}
             </tbody>
         </table>
