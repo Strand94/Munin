@@ -24,4 +24,5 @@ class Course(models.Model):
 class Feedback(models.Model):
     text = models.CharField(max_length=500)
     user = models.ForeignKey(User)
+    timestamp = models.TimeField(default=datetime.datetime.now())
     
