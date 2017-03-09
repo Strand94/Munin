@@ -7,6 +7,7 @@ class Question(models.Model):
     answer = models.CharField(max_length=250, default='')
     asked_question = models.ForeignKey(User)
 
+
 class Course(models.Model):
     name = models.CharField(max_length=50)
     course_id = models.CharField(max_length=7)
@@ -25,4 +26,7 @@ class Feedback(models.Model):
     text = models.CharField(max_length=500)
     user = models.ForeignKey(User)
     timestamp = models.TimeField(default=datetime.datetime.now())
-    
+
+class CourseInfo(models.Model):
+    students = models.ManyToManyField(User, blank=True)
+    course = models.OneToOneField(Course)
