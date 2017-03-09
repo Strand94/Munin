@@ -49,7 +49,7 @@
                         <a href="{% url 'subject' %}">Select classes</a>
                     </li>
                      <li>
-                        <a href="#">Ask questions</a>
+                        <a href="{% url 'questions' %}">Ask questions</a>
                     </li>
                 {% endif %}
                 {% if request.user.is_superuser %}
