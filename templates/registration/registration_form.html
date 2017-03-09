@@ -2,10 +2,32 @@
 {% load i18n %}
 
 {% block content %}
-<form method="post" action=".">
-  {% csrf_token %}
-  {{ form.as_p }}
+    <style>
+    .registration{
+        position: fixed;
+        top: 20%;
+        left: 30%;
+        width: 1000px;
+        margin-top: -50px;
+        margin-left: -100px;
+        font-size: 20px;
+        }
+    .registration_button {
+        text-align: center;
+        width: 400px;
+        font-size: 35px;
+    }
+    </style>
+    <div class="registration">
+        <div>
+            <form method="post" action=".">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="registration_button">
 
-  <input type="submit" value="{% trans 'Submit' %}" />
-</form>
+                    <input class="btn btn-primary" type="submit" value="{% trans 'Submit' %}" />
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
