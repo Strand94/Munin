@@ -1,7 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
+
     <h1> {{ subject.name }} - {{ subject.course_id }}</h1>
-    <p>Lecturer: </p><a href="about.html">{{ subject.lecturer.get_full_name }}</a>
-    <h3>General info:</h3>
+    <div style="float: left;width: 40%; height: 40%" >
+
+
+    <h3>Active Questions</h3>
+
+    <p>List of active questions</p>
+    </div>
+
+    <div style="float: right; width: 60%">
+    <h3>Archived Questions</h3>
+    <a href="">Link to question archive, or searchable archive</a>
+
+    </div>
+
+    <div style="width: 40%">
+    <h3>About:</h3>
     <p> {{ subject.about }}</p>
+
+    </div>
+
+    <!--
+    <div style="..." >
+
+
+    <h3>Active Questions</h3>
+
+    <p>List of active questions</p>
+    </div>
+    -->
+
+
 {% endblock %}
