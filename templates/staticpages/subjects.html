@@ -3,8 +3,28 @@
 {% block title %}{{ user.school }}{% endblock title %}
 {% block content %}
     <h1 style="font-size: 25px">My courses </h1>
+    {% if mysubjects %}
+           <div style="width: 40%">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Subject code</th>
+                    <th>Subject name</th>
+                </tr>
+            </thead>
+            {% for subject in mysubjects %}
+            <tbody>
+                <tr>
+                    <td width="40%"><a href="{{ subject.pk }}">{{ subject.course.course_id }}</a></td>
+                    <td width="60%">{{ subject.course.name }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
         <p>You have not registerd any courses</p>
-
+    {% endif %}
 
     <h1 style="font-size: 25px"> List of courses on {{ user.school }} </h1>
     <div style="width: 40%">

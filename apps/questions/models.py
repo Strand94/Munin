@@ -30,3 +30,6 @@ class Feedback(models.Model):
 class CourseInfo(models.Model):
     students = models.ManyToManyField(User, blank=True)
     course = models.OneToOneField(Course)
+
+    def __str__(self):
+        return self.course.name + ": studenter"
