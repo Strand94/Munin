@@ -33,6 +33,7 @@ urlpatterns = [
       ),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^$', FrontPage, name="home"),
+    url(r'^questions/',include('apps.questions.urls')),
     url(r'^about/', about, name="about"),
     url(r'^contact/', contact, name="contact"),
     url(r'^subjects/$', subject, name="subject"),
