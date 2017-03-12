@@ -17,11 +17,27 @@ def contact(request):
 
 def subject(request):
     user = request.user
-    user_subjetcs = CourseInfo.objects.all().filter(students__username__exact=user.username)
+    user_subjetcs = CourseInfo.objects.all().filter(students__username__contains=user.username)
     user_school = User.objects.filter(username=user).first().school.pk
     available_courses = Course.objects.filter(lecturer__school=user_school)
+    #Need a
+    user_subjetcs_ids = CourseInfo.objects.all().filter(students__username__contains=user.username).values('course_id')
+
+    if request.method == 'POST':
+        if 'remove' in request.POST:
+            id = request.POST.get('remove')
+            selected_subject = user_subjetcs.filter(course__course_id__exact=id).first()
+            selected_subject.students.remove(user)
+
+        elif 'add' in request.POST:
+            id = request.POST.get('add')
+            selected_subject = CourseInfo.objects.all().filter(course__course_id__exact=id).first()
+            selected_subject.students.add(user)
+
+
     return render(request, "staticpages/subjects.html",
-                  {'courses': available_courses, "mysubjects": user_subjetcs}
+                  {'courses': available_courses.exclude(id__in=user_subjetcs_ids),
+                   "mysubjects": user_subjetcs}
                   )
 
 

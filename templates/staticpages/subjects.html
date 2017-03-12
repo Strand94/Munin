@@ -2,7 +2,18 @@
 {% load static %}
 {% block title %}{{ user.school }}{% endblock title %}
 {% block content %}
+    <style>
+    button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        outline: none;
+        border: 0;
+        background: transparent;
+    }
+    </style>
     <h1 style="font-size: 25px">My courses </h1>
+    <form action="" method="post">
+    {% csrf_token %}
     {% if mysubjects %}
            <div style="width: 40%">
         <table class="table table-hover">
@@ -10,39 +21,44 @@
                 <tr>
                     <th>Subject code</th>
                     <th>Subject name</th>
+                    <th></th>
                 </tr>
             </thead>
             {% for subject in mysubjects %}
             <tbody>
                 <tr>
-                    <td width="40%"><a href="{{ subject.pk }}">{{ subject.course.course_id }}</a></td>
-                    <td width="60%">{{ subject.course.name }}</td>
+                    <td width="20%"><a href="{{ subject.pk }}">{{ subject.course.course_id }}</a></td>
+                    <td width="80%">{{ subject.course.name }}</td>
+                    <td><button name="remove" type="submit" value="{{ subject.course.course_id }}"> <span class="glyphicon glyphicon-remove" style="color: red" aria-hidden="true"></span></button></td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
     {% else %}
-        <p>You have not registerd any courses</p>
+        <p>You have no active courses.</p>
     {% endif %}
 
-    <h1 style="font-size: 25px"> List of courses on {{ user.school }} </h1>
-    <div style="width: 40%">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Subject code</th>
-                    <th>Subject name</th>
-                </tr>
-            </thead>
-            {% for subject in courses %}
-            <tbody>
-                <tr>
-                    <td width="40%"><a href="{{ subject.pk }}">{{ subject.course_id }}</a></td>
-                    <td width="60%">{{ subject.name }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+        <h1 style="font-size: 25px"> List of available courses on {{ user.school }} </h1>
+        <div style="width: 40%">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Subject code</th>
+                        <th>Subject name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                {% for subject in courses %}
+                <tbody>
+                    <tr>
+                        <td width="20%"><a href="{{ subject.pk }}">{{ subject.course_id }}</a></td>
+                        <td width="80%">{{ subject.name }}</td>
+                        <td><button name="add" type="submit" value="{{ subject.course_id }}"> <span class="glyphicon glyphicon-plus" style="color: green" aria-hidden="true"></span></button></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
 {% endblock content %}
