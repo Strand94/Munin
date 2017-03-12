@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Questions{% endblock %}
+{% block content %}
+
+    <h2> Question page </h2>
+
+    <a class="btn btn-primary" href="{% url 'ask_new_question' %}"> Ask question </a>
+
+{% endblock %}
