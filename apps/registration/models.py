@@ -25,11 +25,23 @@ class User(AbstractUser):
     #Returns the full name of the user.
     def get_full_name(self):
         if self.middle_name:
-            first_name = self.first_name + ' ' + self.middle_name
+            #This if-statement has been added by Oyvind to avoid whitespace before middle name if there is no first name.
+            if self.first_name == '':
+                first_name = self.middle_name
+
+            else:
+                first_name = self.first_name + ' ' + self.middle_name
         else:
             first_name = self.first_name
-        if first_name == "" and self.last_name == "":
+        if first_name == '' and self.last_name == '':
             return self.username
+        #This if-statement  has been added by Oyvind to avoid whitespace behind first_name if there is no last name.
+        if self.last_name == '':
+            return first_name
+        #This if-statement has been added by Oyvind to avoid whitespace before last_name if there is no first_name.
+        if first_name == '':
+            return self.last_name
+
         return first_name + ' ' + self.last_name
 
     def get_lecturers(self):
@@ -39,6 +51,3 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
-
-
-
