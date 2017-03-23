@@ -7,4 +7,26 @@
 
     <a class="btn btn-primary" href="{% url 'ask_new_question' %}"> Ask question </a>
 
+    <h4>Dine spørsmål:</h4>
+    {% if myQuestions == none %}
+        <p>Du har ikke stilt noen spørsmål enda.</p>
+    {% else %}
+
+        {% for myQuestion in myQuestions %}
+            <div style="background-color: #ffffcc"> <!--her er det bare å sette en passende farge -->
+                <p>Spørsmål:</p>
+                <p>{{ myQuestion.question }}</p>
+
+                <p>Svar:</p>
+                {% if myQuestion.answer == '' %}
+                    <p>Intet svar.</p>
+                {% else %}
+                    <p>{{ myQuestion.answer }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+
 {% endblock %}

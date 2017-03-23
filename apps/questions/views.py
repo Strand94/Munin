@@ -5,7 +5,13 @@ from apps.questions.models import Question
 # Create your views here.
 
 def Questions (request):
-    return render(request,"questions/questions.html")
+    user = request.user
+    myQuestion_list = []
+    allMyQuestions = Question.objects.filter(asked_question=user)
+
+
+    return render(request,"questions/questions.html",
+                  {'myQuestions': allMyQuestions})
 
 def AskNewQuestion (request):
     return render(request, "questions/ask_new.html")
