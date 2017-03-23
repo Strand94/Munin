@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/TDT4140.iml" filepath="$PROJECT_DIR$/.idea/TDT4140.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/munin.iml" filepath="$PROJECT_DIR$/.idea/munin.iml" />
     </modules>
   </component>
