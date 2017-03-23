@@ -5,13 +5,22 @@ from apps.questions.models import Question
 # Create your views here.
 
 def Questions (request):
-    user = request.user
-    myQuestion_list = []
-    allMyQuestions = Question.objects.filter(asked_question=user)
+    if request.method=='POST':
+        if 'delete_question' in request.POST:
+            delete = request.POST.get('delete_question')
+            q_to_delete = Question.objects.filter(pk=delete)
+            q_to_delete.delete()
 
+        user = request.user
+        allMyQuestions = Question.objects.filter(asked_question=user)
+        return render(request, "questions/questions.html",
+                      {'myQuestions': allMyQuestions})
 
-    return render(request,"questions/questions.html",
-                  {'myQuestions': allMyQuestions})
+    else:
+        user = request.user
+        allMyQuestions = Question.objects.filter(asked_question=user)
+        return render(request,"questions/questions.html",
+                      {'myQuestions': allMyQuestions})
 
 def AskNewQuestion (request):
     return render(request, "questions/ask_new.html")
