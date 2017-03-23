@@ -3,6 +3,21 @@
 {% block title %}Your question{% endblock %}
 {% block content %}
 
-    <h2 align="center">You asked a question</h2>
+    <h2>You asked a question</h2>
+
+    {% if myQuestion %}
+        <div>
+            <h4>Ditt spørsmål:</h4>
+            <p>{{ myQuestion.question }}</p>
+        </div>
+        <div>
+            <h4>Svar:</h4>
+            {% if myQuestion.answer == '' %}
+                <p>Spørsmålet ditt har ikke blitt besvart.</p>
+            {% else %}
+                <p>{{ myQuestion.answer }}</p>
+            {% endif %}
+        </div>
+    {% endif %}
 
 {% endblock %}

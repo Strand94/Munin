@@ -24,6 +24,7 @@ def YouAskedAQuestion (request):
             question.asked_question = user
             question.save()
 
-            return render(request, "questions/you_asked_a_question.html")
+            return render(request, "questions/you_asked_a_question.html",
+                          {'myQuestion': question})
         else:
             return render(request, "questions/ask_new.html")
