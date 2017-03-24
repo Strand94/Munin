@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+    <!-- Collecting custom-made css for the search bar -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/search.css" %}">
+{% endblock link %}
+{% block content %}
+    <style>
+        .clickable-row{
+        /* Giving rows in table click prompt. Add both to support more browsers. */
+            cursor: pointer;
+            cursor: hand;}
+    </style>
+
+<form action="" method="post">
+    <!-- back button -->
+    <div class="align-left" style="padding-top: 25px">
+        <a style="position: absolute" id="" href="/subjects" class="btn btn-primary">Back</a>
+    </div>
+</form>
+
+<h1 class="text-center"> List of courses on {{ user.school }} </h1>
+<div class="center-block">
+    <div id="users">
+        <div class="text-center">
+            <input style="width: 50%" class="search" placeholder="Search" />
+        </div>
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Subject code</th>
+                    <th>Subject name</th>
+                    <th>Loaction</th>
+                    <th>Examdate</th>
+                </tr>
+            </thead>
+            <!-- IMPORTANT, class="list" have to be at tbody -->
+            <tbody class="list">
+                {% for subject in courses %}
+                <tr class='clickable-row' data-href="{{ subject.pk }}/info">
+                    <td class="id">{{ subject.course_id }}</td>
+                    <td class="name">{{ subject.name }}</td>
+                    <td class="place">{{ subject.lecturer.school.place }}</td>
+                    {% if subject.examDate %}
+                        <td>{{ subject.examDate }}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+
+{% block script %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script type="text/javascript">
+    var options = {
+    valueNames: [ 'name', 'id', 'place']
+                    };
+
+    var userList = new List('users', options);
+
+    jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+
+    });
+});
+</script>
+
+
+{% endblock script %}

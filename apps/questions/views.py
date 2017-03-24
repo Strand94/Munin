@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from apps.questions.models import Question
+from apps.questions.models import Question, Course
 
 # Create your views here.
 

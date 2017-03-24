@@ -37,6 +37,10 @@ urlpatterns = [
     url(r'^about/', about, name="about"),
     url(r'^contact/', contact, name="contact"),
     url(r'^subjects/$', subject, name="subject"),
-    url(r'^subjects/(?P<pk>[0-9]+)$', subject_detail, name="subject_detail"),
-      ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^subjects/search$', subject_search, name="subject_search"),
+    url(r'^subjects/(?P<pk>[0-9]+)/info', subject_detail, name="subject_detail"),
+    url(r'^subjects/(?P<pk>[0-9]+)/dashboard', subject_dashboard, name="subject_dashboard"),
+    url(r'^subjects/(?P<pk>[0-9]+)/questions', subject_questions, name="subject_questions"),
+
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

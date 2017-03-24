@@ -17,6 +17,7 @@ class Course(models.Model):
         YEAR_CHOICES.append((r, r))
     year = models.IntegerField(choices=YEAR_CHOICES)
     about = models.TextField(blank=True)
+    examDate = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return self.course_id + ' - ' + self.name

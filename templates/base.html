@@ -19,6 +19,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{% static "lib/css/simple-sidebar.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+    {% block link %}
+    {% endblock link %}
 
 
     <!-- Favicon -->
@@ -46,7 +48,7 @@
                         <a href="{% url 'profile' request.user.username %}">My Profile</a>
                     </li>
                      <li>
-                        <a href="{% url 'subject' %}">Select classes</a>
+                        <a href="{% url 'subject' %}">Select class</a>
                     </li>
                      <li>
                         <a href="{% url 'questions' %}">Ask questions</a>
@@ -100,11 +102,9 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script>
-    <!-- kommenterer ut footeren før øyeblikket, den passer ikke helt inn
-    <div id="footer">
-        <p>Dette er en footer der det kan stå kontaktinfo og/eller hva enn som er fornuftig å ha her.</p>
-    </div>
-    -->
+    {% block script %}
+    {% endblock script %}
+
 
 </body>
 

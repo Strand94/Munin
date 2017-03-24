@@ -44,3 +44,24 @@ def subject(request):
 def subject_detail(request, pk):
     course = get_object_or_404(Course, pk=pk)
     return render(request, 'staticpages/subject_detail.html', {'subject': course})
+
+def subject_dashboard(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    return render(request, 'staticpages/subject_dashboard.html', {'subject': course})
+
+def subject_questions(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    return render(request, 'staticpages/subject_questions.html', {'subject': course})
+
+def subject_search(request):
+    user = request.user
+    user_subjetcs = CourseInfo.objects.all().filter(students__username__contains=user.username)
+    user_school = User.objects.filter(username=user).first().school.pk
+    available_courses = Course.objects.filter(lecturer__school=user_school)
+    user_subjetcs_ids = CourseInfo.objects.all().filter(students__username__contains=user.username).values('course_id')
+
+
+    return render(request, "staticpages/subject_search.html",
+                  {'courses': available_courses.exclude(id__in=user_subjetcs_ids),
+                   "mysubjects": user_subjetcs}
+                  )
