@@ -6,5 +6,7 @@ install:
   - pip install coveralls
 script:
   - python manage.py test
-  - coverage run --source=registration,questions,staticpages manage.py test
+  - coverage run ./manage.py test
+  - coverage report
+
 after_success: coveralls
