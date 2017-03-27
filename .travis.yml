@@ -7,6 +7,10 @@ install:
 script:
   - python manage.py test
   - coverage run ./manage.py test
-  - coverage report
+   # Only report the code we have constructed ourselves, not adding manage.py itself because it is
+   # integrated into PyCharm functionality or modules in the virtual enviroment as we have not
+   # created them, and many of them are under a no edit licence.
+  - coverage report --include=apps/*,munin/*
+
 
 after_success: coveralls
