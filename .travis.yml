@@ -1,0 +1,15 @@
+language: python
+python:
+  - "3.6"
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+script:
+  - python manage.py test
+  - coverage run --source=apps ./manage.py test
+   # Only report the code we have constructed ourselves, not adding manage.py itself because it is
+   # integrated into PyCharm functionality or modules in the virtual enviroment as we have not
+   # created them, and many of them are under a no edit licence.
+  - coverage report
+
+after_success: coveralls
