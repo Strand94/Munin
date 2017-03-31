@@ -66,7 +66,7 @@ def subject_dashboard(request, pk):
 
 def subject_questions(request, pk):
     course = get_object_or_404(Course, pk=pk)
-    return render(request, 'staticpages/subject_questions.html, {'subject': course})
+    return render(request, 'staticpages/subject_questions.html', {'subject': course})
 
 def subject_search(request):
     user = request.user
