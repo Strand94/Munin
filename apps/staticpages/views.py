@@ -45,6 +45,7 @@ def subject_detail(request, pk):
     course = get_object_or_404(Course, pk=pk)
     this_course = CourseInfo.objects.all().filter(course__course_id__exact=course.course_id).first()
     user = request.user
+    userRole = user.role
     user_subjetcs = CourseInfo.objects.all().filter(students__username__contains=user.username)
     user_school = User.objects.filter(username=user).first().school.pk
     available_courses = Course.objects.filter(lecturer__school=user_school)
@@ -58,7 +59,8 @@ def subject_detail(request, pk):
         elif 'add' in request.POST:
             this_course.students.add(user)
 
-    return render(request, 'staticpages/subject_detail.html', {'subject': course, 'isEnrolled': is_enrolled})
+    return render(request, 'staticpages/subject_detail.html', {'subject': course, 'isEnrolled': is_enrolled
+        ,'userRole': userRole})
 
 def subject_dashboard(request, pk):
     course = get_object_or_404(Course, pk=pk)

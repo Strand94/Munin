@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
     <div class="align-left" style="padding-top: 25px">
         <a id="" href="/subjects/search" class="btn btn-primary">Back</a>
     </div>
@@ -9,10 +10,12 @@
     <div class="container">
     <form action="" method="post">
     {% csrf_token %}
-    {% if isEnrolled %}
-        <button type="submit" name="remove" value="{{ subject.pk }}" class="btn btn-danger btn-lg">Leave class</button>
-    {% else %}
-        <button type="submit" name="add" value="{{ subject.pk }}" class="btn btn-primary btn-lg">Enroll in this class</button>
+    {% if userRole == 'S' %}
+        {% if isEnrolled %}
+            <button type="submit" name="remove" value="{{ subject.pk }}" class="btn btn-danger btn-lg">Leave class</button>
+        {% else %}
+            <button type="submit" name="add" value="{{ subject.pk }}" class="btn btn-primary btn-lg">Enroll in this class</button>
+        {% endif %}
     {% endif %}
     </form>
         <div class="panel-group" style="height: 40%">
@@ -28,6 +31,7 @@
                 <div id="AboutSubject" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <p>{{ subject.about }}</p>
+
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@
                 <img src="{% static "images/munin_mainlogo.png" %}" style="height:65px; padding-bottom: 10px; padding-top: 10px">
             </a>
         </li>
+        <!-- If not logged in -->
         {% if not request.user.is_authenticated %}
             <li>
                 <a href="{% url 'auth_login' %}">Login</a>
@@ -14,12 +15,18 @@
             <li>
                 <a href="{% url 'profile' request.user.username %}">My Profile</a>
             </li>
-             <li>
-                <a href="{% url 'subject' %}">Select class</a>
-            </li>
-             <li>
-                <a href="{% url 'questions' %}">Ask questions</a>
-            </li>
+            <!-- if student user -->
+            {% if request.user.role == 'S' %}
+                <li>
+                    <a href="{% url 'subject' %}">My courses</a>
+                </li>
+            {% endif %}
+            <!-- if lecturer user -->
+            {% if request.user.role == 'P' %}
+                <li>
+                    <a href="{% url 'subject' %}">My lectures</a>
+                </li>
+            {% endif %}
         {% endif %}
         {% if request.user.is_superuser %}
             <li>
@@ -37,6 +44,5 @@
                 <a href="{% url 'auth_logout' %}">Logout</a>
             </li>
         {% endif %}
-
     </ul>
 </div>
