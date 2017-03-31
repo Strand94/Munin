@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <div class="align-left" style="padding-top: 25px">
-        <a id="" href="/subjects/search" class="btn btn-primary">Back</a>
+
+    <div style="padding-top: 25px; position: absolute; padding-left: 102px;">
+        <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
     </div>
 
     <h1 class="text-center"> {{ subject.name }} - {{ subject.course_id }}</h1>
@@ -22,16 +23,19 @@
 
         </div>
         <div class="panel-group">
-            <div class="panel panel-default"> <!--style="float: left; width: 40%">-->
+            <div class="panel panel-default">
                 <div class="panel-heading">
                    <h2 class="panel-title">
-                      <a href="#AboutSubject" data-toggle="collapse">About</a>
+                      <a href="#AboutSubject" data-toggle="collapse">Subject Info</a>
                     </h2>
                 </div>
                 <div id="AboutSubject" class="panel-collapse collapse in">
                     <div class="panel-body">
+                        <p><strong>Lecturer:</strong> {{ subject.lecturer.first_name }} {{ subject.lecturer.middle_name }} {{ subject.lecturer.last_name }}</p>
+                        <p><strong>Contact information:</strong> {{ subject.lecturer.email }}</p>
+                        <p><strong>Examdate:</strong> {{ subject.examDate }}</p>
+                        <p><strong>About {{ subject.name }}:</strong></p>
                         <p>{{ subject.about }}</p>
-
                     </div>
                 </div>
             </div>
