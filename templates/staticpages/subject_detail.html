@@ -1,41 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="align-left" style="padding-top: 25px">
+        <a id="" href="/subjects/search" class="btn btn-primary">Back</a>
+    </div>
 
-    <h1> {{ subject.name }} - {{ subject.course_id }}</h1>
+    <h1 class="text-center"> {{ subject.name }} - {{ subject.course_id }}</h1>
 
     <div class="container">
+    <form action="" method="post">
+    {% csrf_token %}
+    {% if isEnrolled %}
+        <button type="submit" name="remove" value="{{ subject.pk }}" class="btn btn-danger btn-lg">Leave class</button>
+    {% else %}
+        <button type="submit" name="add" value="{{ subject.pk }}" class="btn btn-primary btn-lg">Enroll in this class</button>
+    {% endif %}
+    </form>
         <div class="panel-group" style="height: 40%">
-
-            <div class="panel panel-default"><!-- style=" float: left;width: 40%">-->
-                <div class="panel-heading">
-                   <h2 class="panel-title">
-                      <a href="#ActiveQuestions" data-toggle="collapse">Active Questions</a>
-                    </h2>
-                </div>
-                <div id="ActiveQuestions" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <p>Active Questions</p>
-
-                    </div>
-                </div>
-            </div>
-<!--
-            <div style="width: 5%">
-            </div>
--->
-            <div class="panel panel-default"> <!--style="float: right; width: 55%">-->
-                <div class="panel-heading">
-                   <h2 class="panel-title">
-                      <a href="#ArchivedQuestions" data-toggle="collapse">Archived Questions</a>
-                    </h2>
-                </div>
-                <div id="ArchivedQuestions" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <p>Archived Questions</p>
-
-                    </div>
-                </div>
-            </div>
 
         </div>
         <div class="panel-group">

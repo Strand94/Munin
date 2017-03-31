@@ -2,12 +2,6 @@ from django.db import models
 from apps.registration.models import User
 import datetime
 
-class Question(models.Model):
-    question = models.CharField(max_length=250)
-    answer = models.CharField(max_length=250, default='')
-    asked_question = models.ForeignKey(User)
-
-
 class Course(models.Model):
     name = models.CharField(max_length=50)
     course_id = models.CharField(max_length=7)
@@ -22,6 +16,12 @@ class Course(models.Model):
     def __str__(self):
         return self.course_id + ' - ' + self.name
 
+class Question(models.Model):
+    question = models.CharField(max_length=250)
+    answer = models.CharField(max_length=250, default='')
+    asked_question = models.ForeignKey(User)
+    course = models.ForeignKey(Course)
+    timestamp = models.DateTimeField(default=datetime.datetime.now())
 
 class Feedback(models.Model):
     text = models.CharField(max_length=500)

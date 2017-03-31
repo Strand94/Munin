@@ -24,6 +24,7 @@ SECRET_KEY = '(ci20mm+chsh$mah8z4$y5q(61wq@-vq$y+-p3q&--nf_v6llu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -41,6 +42,14 @@ INSTALLED_APPS = [
     'apps.staticpages',
     'apps.registration',
     'apps.questions',
+    'django_nose',
+]
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=foo,bar',
 ]
 
 MIDDLEWARE = [

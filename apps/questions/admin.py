@@ -6,3 +6,4 @@ class CourseInfoAdmin(admin.ModelAdmin):
     filter_horizontal = ('students', )
 
 admin.site.register(CourseInfo, CourseInfoAdmin)
+admin.site.register(Question)
