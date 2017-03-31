@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from apps.registration.models import User
-from apps.questions.models import Course, CourseInfo
+from apps.questions.models import Course, CourseInfo, Question
 
 
 def FrontPage(request):
@@ -66,7 +66,8 @@ def subject_dashboard(request, pk):
 
 def subject_questions(request, pk):
     course = get_object_or_404(Course, pk=pk)
-    return render(request, 'staticpages/subject_questions.html', {'subject': course})
+    questionlist = Question.objects.filter(course=course)
+    return render(request, 'staticpages/subject_questions.html', {'subject': course, 'questions': questionlist})
 
 def subject_search(request):
     user = request.user

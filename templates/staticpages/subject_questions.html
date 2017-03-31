@@ -1,9 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
 
+    <h1 class="text-center"> Question page {{ subject.name }} - {{ subject.course_id }}</h1>
 
-    <h1 class="text-center"> {{ subject.name }} - {{ subject.course_id }}</h1>
+    <div class="container">
+        <div class="panel-group" style="width: 40vw; float: left">
 
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   <h2 class="panel-title">
+                      <a href="#NewestQuestions" data-toggle="collapse">Active Questions</a>
+                    </h2>
+                </div>
+                <div id="NewestQuestions" class="panel-collapse collapse in">
+                    <div class="panel-body" style="overflow-y: scroll">
+                        <p>Sortable list over questions- by points, time etc.</p>
+                        {% for question in questions %}
+                            <p>Question: {{ question.question }}</p>
+                            <p>Answer: {{ question.answer }}</p>
 
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-group" style="width: 30vw; float: right;">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   <h2 class="panel-title">
+                      <a href="#SubjectInfo" data-toggle="collapse">Ask new questions:</a>
+                    </h2>
+                </div>
+                <div id="SubjectInfo" class="panel-collapse collapse in">
+                    <p>Ability to ask questions</p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   <h2 class="panel-title">
+                      <a href="#ContactInfo" data-toggle="collapse">Contact Information</a>
+                    </h2>
+                </div>
+                <div id="ContactInfo" class="panel-collapse collapse in">
+                    <div class="panel-body" style="overflow-y: scroll">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

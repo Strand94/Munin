@@ -15,7 +15,7 @@
     <h1 class="text-center"> {{ subject.name }} - {{ subject.course_id }}</h1>
 
     <div class="container">
-        <div class="panel-group" style="width: 35vw; float: left">
+        <div class="panel-group">
 
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -72,62 +72,6 @@
                 </div>
                 <div id="LiveSession" class="panel-collapse collapse in">
                     <div class="panel-body" style="overflow-y: scroll">
-                        <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                            veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
-                            ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                            consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque
-                            porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                            sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaer
-                            at voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
-                            laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
-                            qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat
-                            quo voluptas nulla pariatur?"</p>
-                        <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                            veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
-                            ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                            consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque
-                            porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                            sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaer
-                            at voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
-                            laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
-                            qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat
-                            quo voluptas nulla pariatur?"</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel-group" style="width: 30vw; float: right;">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                   <h2 class="panel-title">
-                      <a href="#SubjectInfo" data-toggle="collapse">Subject Info</a>
-                    </h2>
-                </div>
-                <div id="SubjectInfo" class="panel-collapse collapse in">
-                    <div class="panel-body" style="overflow-y: scroll">
-                        <p style="font-weight: bold">Lecturer:</p>
-                        <p>{{ subject.lecturer.get_full_name }}</p>
-                        <p style="font-weight: bold">Examdate:</p>
-                        <p>{{ subject.examDate }}</p>
-                        <p style="font-weight: bold">Info:</p>
-                        <p>{{ subject.about }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                   <h2 class="panel-title">
-                      <a href="#ContactInfo" data-toggle="collapse">Contact Information</a>
-                    </h2>
-                </div>
-                <div id="ContactInfo" class="panel-collapse collapse in">
-                    <div class="panel-body" style="overflow-y: scroll">
-                        <p style="font-weight: bold">Contact email:</p>
-                        <p>{{ subject.lecturer.get_full_name }}: {{ subject.lecturer.email }}</p>
                         <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
                             doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
                             veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
