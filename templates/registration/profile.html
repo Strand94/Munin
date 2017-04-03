@@ -21,6 +21,7 @@
                     <img src="/uploads/{{user.image}}" style="width: 250px; height: 250px">
                 </div>
                 <p class="frontpage-header">{{ user.get_role_display }} at {{ user.school }}</p>
+                <p class="frontpage-header">Email: {{ user.email }}</p>
             </div>
         </div>
 {% endblock content %}
