@@ -24,7 +24,7 @@
             <!-- if lecturer user -->
             {% if request.user.role == 'P' %}
                 <li>
-                    <a href="{% url 'subject' %}">My lectures</a>
+                    <a href="{% url 'lecture' %}">My lectures</a>
                 </li>
             {% endif %}
         {% endif %}

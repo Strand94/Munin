@@ -14,13 +14,17 @@ def about(request):
 def contact(request):
     return render(request, "staticpages/contact.html")
 
+def lecture(request):
+    user = request.user
+    user_lectures = Course.objects.all().filter(lecturer=user)
+
+    return render(request, "staticpages/lectures.html", {'lectures':user_lectures})
 
 def subject(request):
     user = request.user
     user_subjetcs = CourseInfo.objects.all().filter(students__username__contains=user.username)
     user_school = User.objects.filter(username=user).first().school.pk
     available_courses = Course.objects.filter(lecturer__school=user_school)
-    #Need a
     user_subjetcs_ids = CourseInfo.objects.all().filter(students__username__contains=user.username).values('course_id')
 
     if request.method == 'POST':
@@ -39,6 +43,13 @@ def subject(request):
                   {'courses': available_courses.exclude(id__in=user_subjetcs_ids),
                    "mysubjects": user_subjetcs}
                   )
+
+def subject_participants(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    courseinfo = CourseInfo.objects.all().filter(course__course_id__exact=course.course_id).first()
+    participants = courseinfo.students.all()
+    return render(request, 'staticpages/subject_members.html', {"course":course, "participants":participants})
+
 
 
 def subject_detail(request, pk):

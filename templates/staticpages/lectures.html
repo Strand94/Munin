@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ user.school }}{% endblock title %}
+{% block content %}
+    <style>
+        .glyphicon {
+            font-size: 24px;
+        }
+
+        td{
+            font-size: 24px;
+        }
+
+        a{
+            color: #0f0f0f;
+        }
+
+        span:hover {
+            color: #1b6d85;
+            cursor: pointer;
+            cursor: hand;
+        }
+
+
+    </style>
+    <div class="align-left" style="padding-top: 25px">
+        <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+        <a id="" href="#" class="btn btn-primary">Create new course</a>
+        <a id="" href="/subjects/search" class="btn btn-primary">See all courses</a>
+    </div>
+    <h1 class="text-center">My courses </h1>
+
+   <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Subject code</th>
+                    <th>Subject name</th>
+                    <th class="col-xs-1">Subject info</th>
+                    <th class="col-xs-1">Student list</th>
+                    <th class="col-xs-1">Edit</th>
+                </tr>
+            </thead>
+            <tbody class="list">
+                {% for subject in lectures %}
+                <tr>
+                    <td class="id">{{ subject.course_id }}</td>
+                    <td class="name">{{ subject.name }}</td>
+                    <td><a href="/subjects/{{ subject.pk }}/info"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+                    <td><a href="/subjects/{{ subject.pk }}/participants"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a></td>
+                    <td><a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock content %}

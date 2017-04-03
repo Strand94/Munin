@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="align-left" style="padding-top: 25px">
+        <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+    </div>
+    <h1 class="text-center">Participants in {{ course.course_id }} - {{ course.name }}</h1>
+       <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Navn</th>
+                </tr>
+            </thead>
+            <tbody class="list">
+            {% for student in participants %}
+                <tr>
+                    <td class="id">{{ student.get_full_name }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}
