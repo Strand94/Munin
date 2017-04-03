@@ -25,7 +25,7 @@
     </style>
     <div class="align-left" style="padding-top: 25px">
         <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
-        <a id="" href="#" class="btn btn-primary">Create new course</a>
+        <a id="" href="new/" class="btn btn-primary">Create new course</a>
         <a id="" href="/subjects/search" class="btn btn-primary">See all courses</a>
     </div>
     <h1 class="text-center">My courses </h1>
@@ -47,7 +47,7 @@
                     <td class="name">{{ subject.name }}</td>
                     <td><a href="/subjects/{{ subject.pk }}/info"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
                     <td><a href="/subjects/{{ subject.pk }}/participants"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a></td>
-                    <td><a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                    <td><a href="{{ subject.pk }}/edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
                 </tr>
             {% endfor %}
             </tbody>

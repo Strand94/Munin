@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'apps.staticpages',
     'apps.registration',
     'apps.questions',
-    'django_nose',
 ]
 
 MIDDLEWARE = [

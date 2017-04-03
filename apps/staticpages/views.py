@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from apps.registration.models import User
 from apps.questions.models import Course, CourseInfo, Question
+from apps.questions.forms import BootstrapCourseForm
+from django.shortcuts import redirect
 
 
 def FrontPage(request):
@@ -94,3 +96,27 @@ def subject_search(request):
                   {'courses': available_courses.exclude(id__in=user_subjetcs_ids),
                    "mysubjects": user_subjetcs}
                   )
+
+def new_course(request):
+    if request.method == "POST":
+        form = BootstrapCourseForm(request.POST)
+        if form.is_valid():
+            course = form.save(commit=False)
+            course.lecturer = request.user
+            course.save()
+            courseinfo = CourseInfo.objects.create(course=course)
+            courseinfo.save()
+            return redirect('lecture')
+    form = BootstrapCourseForm(request.POST)
+    return render(request, "staticpages/course_form.html", {'form': form})
+
+def edit_course(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    if request.method == "POST":
+        form = BootstrapCourseForm(request.POST, instance=course)
+        if form.is_valid():
+            course = form.save()
+            return redirect('lecture')
+    else:
+        form = BootstrapCourseForm(instance=course)
+    return render(request, "staticpages/course_form.html", {'form': form})

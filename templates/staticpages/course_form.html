@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="align-left" style="padding-top: 25px">
+        <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+    </div>
+    <div>
+    <h3> Course </h3>
+     <form method="POST" class="post-form">{% csrf_token %}
+        <div class="form-group">
+            <label for="id_title">Name:</label>
+            {{ form.name }}
+        </div>
+            <div class="form-group">
+                <label for="id_title">Couse ID:</label>
+                {{ form.course_id }}
+            </div>
+         <div class="form-group">
+            <label for="id_title">Year:</label>
+            {{ form.year}}
+        </div>
+         <div class="form-group">
+            <label for="id_title">About:</label>
+            {{ form.about}}
+        </div>
+         <div class="form-group">
+            <label for="id_title">Exam date:</label>
+            {{ form.examDate}}
+        </div>
+        <div class="center-text">
+            <button style="text-align: center" type="submit" value="Save" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    </div>
+{% endblock %}
