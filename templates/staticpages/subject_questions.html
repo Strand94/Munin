@@ -5,11 +5,37 @@
         <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
     </div>
 
-    <h1 class="text-center"> Question page {{ subject.name }} - {{ subject.course_id }}</h1>
+    <h1 class="text-center"> Questions {{ subject.name }} - {{ subject.course_id }}</h1>
+
+    <div class="center-block">
+        <div id="users">
+            <div class="text-center">
+                <input style="width: 50%" class="search" placeholder="Search" />
+            </div>
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Time</th>
+                        <th>Asker</th>
+                    </tr>
+                </thead>
+                <!-- IMPORTANT, class="list" have to be at tbody -->
+                <tbody class="list">
+                    {% for question in questions %}
+                    <tr class='clickable-row' data-href="{{ subject.pk }}/info">
+                        <td class="id">{{ question.question }}</td>
+                        <td class="name">{{ question.timestamp }}</td>
+                        <td class="place">{{ question.asked_question }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <div class="container">
         <div class="panel-group">
-
             <div class="panel panel-default">
                 <div class="panel-heading">
                    <h2 class="panel-title">
@@ -43,4 +69,25 @@
         </div>
     </div>
 
+
 {% endblock %}
+
+{% block script %}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script type="text/javascript">
+    var options = {
+    valueNames: [ 'question', 'timestamp', 'asked_question']
+                    };
+
+    var userList = new List('users', options);
+
+    jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+
+    });
+});
+</script>
+
+{% endblock script %}
