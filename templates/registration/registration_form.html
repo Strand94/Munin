@@ -1,33 +1,21 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load bootstrap_tags %}
 
 {% block content %}
-    <style>
-    .registration{
-        position: fixed;
-        top: 20%;
-        left: 30%;
-        width: 1000px;
-        margin-top: -50px;
-        margin-left: -100px;
-        font-size: 20px;
-        }
-    .registration_button {
-        text-align: center;
-        width: 400px;
-        font-size: 35px;
-    }
-    </style>
-    <div class="registration">
-        <div>
-            <form method="post" action=".">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <div class="registration_button">
+<div class="align-left" style="padding-top: 25px; padding-bottom: 25px">
+    <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+</div>
+<div class="registration">
+    <div>
+        <form method="post" action=".">
+            {% csrf_token %}
+            {{ form|as_bootstrap }}
+            <div class="registration_button">
 
-                    <input class="btn btn-primary" type="submit" value="{% trans 'Submit' %}" />
-                </div>
-            </form>
-        </div>
+                <input class="btn btn-primary" type="submit" value="{% trans 'Submit' %}" />
+            </div>
+        </form>
+    </div>
     </div>
 {% endblock %}

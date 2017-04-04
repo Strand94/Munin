@@ -9,16 +9,6 @@
     <h1 class="text-center"> {{ subject.name }} - {{ subject.course_id }}</h1>
 
     <div class="container">
-    <form action="" method="post">
-    {% csrf_token %}
-    {% if userRole == 'S' %}
-        {% if isEnrolled %}
-            <button type="submit" name="remove" value="{{ subject.pk }}" class="btn btn-danger btn-lg">Leave class</button>
-        {% else %}
-            <button type="submit" name="add" value="{{ subject.pk }}" class="btn btn-primary btn-lg">Enroll in this class</button>
-        {% endif %}
-    {% endif %}
-    </form>
         <div class="panel-group" style="height: 40%">
 
         </div>
@@ -40,6 +30,16 @@
                 </div>
             </div>
         </div>
+        <form action="" method="post" class="center-text">
+        {% csrf_token %}
+            {% if userRole == 'S' %}
+                {% if isEnrolled %}
+                    <button type="submit" name="remove" value="{{ subject.pk }}" class="btn btn-danger btn-lg">Leave class</button>
+                {% else %}
+                    <button type="submit" name="add" value="{{ subject.pk }}" class="btn btn-primary btn-lg">Enroll in this class</button>
+                {% endif %}
+            {% endif %}
+        </form>
     </div>
 
 

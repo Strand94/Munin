@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'apps.staticpages',
     'apps.registration',
     'apps.questions',
+    'django_forms_bootstrap',
 ]
 
 MIDDLEWARE = [
