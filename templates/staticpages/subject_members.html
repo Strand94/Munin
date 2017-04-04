@@ -8,13 +8,17 @@
        <table class="table table-responsive table-hover">
             <thead>
                 <tr>
-                    <th>Navn</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>User Profile</th>
                 </tr>
             </thead>
             <tbody class="list">
             {% for student in participants %}
                 <tr>
                     <td class="id">{{ student.get_full_name }}</td>
+                    <td class="mail">{{ student.email }}</td>
+                    <td><a href="/user/{{ student.username }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
                 </tr>
             {% endfor %}
             </tbody>
