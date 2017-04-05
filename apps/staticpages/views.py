@@ -22,7 +22,7 @@ def lecture(request):
     user = request.user
     user_lectures = Course.objects.all().filter(lecturer=user)
 
-    return render(request, "staticpages/lectures.html", {'lectures':user_lectures})
+    return render(request, "staticpages/../../templates/courses/lectures.html", {'lectures':user_lectures})
 
 def subject(request):
     user = request.user
@@ -43,7 +43,7 @@ def subject(request):
             selected_subject.students.add(user)
 
 
-    return render(request, "staticpages/subjects.html",
+    return render(request, "staticpages/../../templates/courses/subjects.html",
                   {'courses': available_courses.exclude(id__in=user_subjetcs_ids),
                    "mysubjects": user_subjetcs}
                   )
@@ -52,7 +52,7 @@ def subject_participants(request, pk):
     course = get_object_or_404(Course, pk=pk)
     courseinfo = CourseInfo.objects.all().filter(course__course_id__exact=course.course_id).first()
     participants = courseinfo.students.all()
-    return render(request, 'staticpages/subject_members.html', {"course":course, "participants":participants})
+    return render(request, 'staticpages/../../templates/courses/subject_members.html', {"course":course, "participants":participants})
 
 
 
@@ -74,17 +74,17 @@ def subject_detail(request, pk):
         elif 'add' in request.POST:
             this_course.students.add(user)
 
-    return render(request, 'staticpages/subject_detail.html', {'subject': course, 'isEnrolled': is_enrolled
+    return render(request, 'staticpages/../../templates/courses/subject_detail.html', {'subject': course, 'isEnrolled': is_enrolled
         ,'userRole': userRole})
 
 def subject_dashboard(request, pk):
     course = get_object_or_404(Course, pk=pk)
-    return render(request, 'staticpages/subject_dashboard.html', {'subject': course})
+    return render(request, 'staticpages/../../templates/courses/subject_dashboard.html', {'subject': course})
 
 def subject_questions(request, pk):
     course = get_object_or_404(Course, pk=pk)
     questionlist = Question.objects.filter(course=course)
-    return render(request, 'staticpages/subject_questions.html', {'subject': course, 'questions': questionlist})
+    return render(request, 'staticpages/../../templates/courses/subject_questions.html', {'subject': course, 'questions': questionlist})
 
 def subject_search(request):
     user = request.user
@@ -94,7 +94,7 @@ def subject_search(request):
     user_subjetcs_ids = CourseInfo.objects.all().filter(students__username__contains=user.username).values('course_id')
 
 
-    return render(request, "staticpages/subject_search.html",
+    return render(request, "staticpages/../../templates/courses/subject_search.html",
                   {'courses': available_courses.exclude(id__in=user_subjetcs_ids),
                    "mysubjects": user_subjetcs}
                   )
@@ -110,7 +110,7 @@ def new_course(request):
             courseinfo.save()
             return redirect('lecture')
     form = BootstrapCourseForm(request.POST)
-    return render(request, "staticpages/course_form.html", {'form': form})
+    return render(request, "staticpages/../../templates/courses/course_form.html", {'form': form})
 
 def edit_course(request, pk):
     course = get_object_or_404(Course, pk=pk)
@@ -121,4 +121,4 @@ def edit_course(request, pk):
             return redirect('lecture')
     else:
         form = BootstrapCourseForm(instance=course)
-    return render(request, "staticpages/course_form.html", {'form': form})
+    return render(request, "staticpages/../../templates/courses/course_form.html", {'form': form})
