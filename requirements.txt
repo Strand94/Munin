@@ -3,3 +3,4 @@ Pillow
 Django-registration
 Django-nose
 django-forms-bootstrap
+django-vote

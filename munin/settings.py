@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'apps.staticpages',
     'apps.registration',
     'apps.questions',
+    'apps.courses',
     'django_forms_bootstrap',
+    'vote',
 ]
 
 MIDDLEWARE = [

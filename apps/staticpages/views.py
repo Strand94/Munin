@@ -1,8 +1,10 @@
-from django.shortcuts import render, get_object_or_404
-from apps.registration.models import User
-from apps.questions.models import Course, CourseInfo, Question
-from apps.questions.forms import BootstrapCourseForm
 from django.shortcuts import redirect
+from django.shortcuts import render, get_object_or_404
+
+from apps.courses.forms import BootstrapCourseForm
+from apps.courses.models import Course, CourseInfo
+from apps.questions.models import Question
+from apps.registration.models import User
 
 
 def FrontPage(request):
