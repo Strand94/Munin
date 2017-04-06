@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <style>
+    .panel-body{
+        max-height: 40vh;
+        padding-top: 10px;
+    }
+      .clickable-row{
+        /* Giving rows in table click prompt. Add both to support more browsers. */
+            cursor: pointer;
+            cursor: hand;}
+    </style>
+
+    <div class="align-left" style="padding-top: 25px">
+        <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+        <a style="" id="" href="/subjects/{{subject.pk }}/info" class="btn btn-primary">Course info</a>
+        <a style="" id="" href="questions/" class="btn btn-primary">Questions page</a>
+    </div>
+
+    <h1 class="text-center"> {{ subject.name }} - {{ subject.course_id }}</h1>
+
+
+    <div class="container">
+        <div class="panel-group">
+             <div class="panel panel-default">
+                <div class="panel-heading">
+                   <h2 class="panel-title">
+                      <a href="#NewestQuestions" data-toggle="collapse">Questions</a>
+                    </h2>
+                </div>
+                <div id="NewestQuestions" class="panel-collapse collapse in">
+                    <div class="panel-body" style="overflow-y: scroll">
+                        <table class="table table-responsive table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Question</th>
+                                    <th>Time posted</th>
+                                    <th>Asked by</th>
+                                    <th>Points</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list">
+                                <tr>
+                                    <td><strong> 3 newest questions</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                {% for question in questions %}
+                                    <tr class='clickable-row' data-href="{{ subject.pk }}/info">
+                                        <td class="id"><strong>{{ question.title }}</strong><br>{{ question.text }}</td>
+                                        <td class="timestamp">{{ question.timestamp }}</td>
+                                        <td class="user">
+                                            {% if question.user %}
+                                                {{ question.user.get_full_name }}
+                                            {% else %}
+                                                Anonymous
+                                            {% endif %}
+                                        </td>
+                                        <td class="score">{{ question.vote_score }}</td>
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td><strong>top 3 rated questions</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                 {% for question in top %}
+                                    <tr class='clickable-row' data-href="{{ subject.pk }}/info">
+                                        <td class="id"><strong>{{ question.title }}</strong><br>{{ question.text }}</td>
+                                        <td class="name">{{ question.timestamp }}</td>
+                                          <td class="user">
+                                            {% if question.user %}
+                                                {{ question.user.get_full_name }}
+                                            {% else %}
+                                                Anonymous
+                                            {% endif %}
+                                            </td>
+                                        <td class="score">{{ question.vote_score }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                         </table>
+                        <div style="text-align: center">
+                            <a style="" id="" href="questions/" class="btn btn-primary">All Questions</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        <a href="#QuestionPage" data-toggle="collapse">Information</a>
+                    </h2>
+                </div>
+                <div id="QuestionPage" class="panel-collapse collapse in">
+                    <div class="panel-body" style="overflow-y: scroll">
+                        <p style="text-align: center">Litt statistikk her, ant upvotes, ant ubesvarte spm, osv...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   <h2 class="panel-title">
+                      <a href="#LiveSession" data-toggle="collapse">Live session</a>
+                    </h2>
+                </div>
+                <div id="LiveSession" class="panel-collapse collapse in">
+                    <div class="panel-body" style="overflow-y: scroll">
+                        <p style="text-align: center">No live session currently available.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

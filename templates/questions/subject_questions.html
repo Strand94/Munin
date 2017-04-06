@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- vil at den ser noe slik ut http://preview.themeforest.net/item/qaengine-question-and-answer-wordpress-theme/full_screen_preview/7972399 -->
+    <style>
+      .clickable-row{
+        /* Giving rows in table click proampt. Add both to support more browsers. */
+            cursor: pointer;
+         }
+
+    </style>
+
+    <div class="align-left" style="padding-top: 25px">
+        <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+        <a style="" id="" href="#" class="btn btn-primary">Ask question</a>
+    </div>
+
+    <h1 class="text-center"> Questions {{ subject.name }} - {{ subject.course_id }}</h1>
+
+    <div class="center-block">
+        <div id="users">
+            <div class="text-center">
+                <input style="width: 50%" class="search" placeholder="Search" />
+            </div>
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Time</th>
+                        <th>status</th>
+                        <th>Asked by</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <!-- IMPORTANT, class="list" have to be at tbody -->
+                <tbody class="list">
+                    {% for question in questions %}
+                    <tr class='clickable-row' data-href="/course/question/{{ question.pk }}">
+                        <td class="id"><strong>{{ question.title }}</strong><br>{{ question.text }}</td>
+                        <td class="name">{{ question.timestamp }}</td>
+                        <td>{{ question_get_answers }}</td>
+                        <td class="user">
+                            {% if question.user %}
+                                {{ question.user.get_full_name }}
+                            {% else %}
+                                Anonymous
+                            {% endif %}
+                        </td>
+                        <td>{{ question.vote_score }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block script %}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script type="text/javascript">
+    var options = {
+    valueNames: [ 'question', 'timestamp', 'asked_question']
+                    };
+
+    var userList = new List('users', options);
+
+    jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+
+    });
+});
+</script>
+
+{% endblock script %}

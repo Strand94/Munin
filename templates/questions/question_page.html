@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+#profile-image { height: 50px; width: 50px; overflow: hidden; border-radius: 50% }
+
+ul {
+	padding: 0;
+	list-style: none;
+    	margin: 10px 5px 10px 0;
+
+}
+
+.select-category {
+	border-bottom: 1px solid rgba(37, 37, 52, 0.97);
+	margin: 0;
+}
+
+.author-name{
+	margin: 0 15px;
+	color: #79b0ca;
+}
+
+.question-cat span.user-badge{
+	padding:0 10px;
+	color: #fff;
+	/*margin-left: 10px;*/
+	margin-right: 15px;
+	line-height: 20px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px; /* border radius */
+	background-color: #00adef; /* layer fill content */
+
+}
+
+
+/* Angir avstand mellom upvote/downvote knapper */
+.question-main-content .vote-block ul li {
+	display: block;
+	margin-bottom: 10px;
+}
+/* stil på upvote/downvote knapper */
+.question-main-content .vote-block button {
+	height: 25px;
+	border: 1px solid #e9eaa4;
+    background-color: #3397db;
+	display: block;
+	text-align: center;
+	line-height: 1.6;
+	color: #f9f7ff;
+	margin: 0 auto;
+}
+
+/* stil på spm sitt poengtall */
+.question-main-content .vote-block span {
+	color: #fff;
+	min-width: 45px;
+	height: 23px;
+	text-align: center;
+	margin: 0 auto;
+	display: table;
+	padding: 0 10px;
+	line-height: 23px;
+	font-size: 12px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px; /* border radius */
+	background-color: #3397db; /* layer fill content */
+}
+/* angir hovedboks for spm */
+.question-main-content {
+	padding: 25px 0;
+	border-bottom: 1px solid #dadfea;
+	margin: 0;
+}
+/* stil for header, knapp for besvart/ikke */
+.answered {
+	display: inline-block;
+	color: #fff;
+	width: 100px;
+	text-align: center;
+	line-height: 25px;
+	-moz-border-radius: 13px;
+	-webkit-border-radius: 13px;
+	border-radius: 13px; /* border radius */
+	background-color: #1abc9c; /* layer fill content */
+	margin-right: 20px;
+}
+.unanswered {
+	display: inline-block;
+	color: #fff;
+	width: 100px;
+	text-align: center;
+	line-height: 25px;
+	-moz-border-radius: 13px;
+	-webkit-border-radius: 13px;
+	border-radius: 13px; /* border radius */
+	background-color: #bc3f39; /* layer fill content */
+	margin-right: 20px;
+}
+
+/* gjør hovedteksten mer lesbar */
+.question-main-content .question-content {
+	margin: 25px 0 20px;
+	font-size: 16px;
+	color: #5f6f81;
+	border-bottom: 1px solid #dadfea;
+	padding-bottom: 15px;
+}
+
+
+/* flytter svar antallet til høyre*/
+.q-right-content .question-control {
+	text-align: right;
+	margin-top: 5px;
+}
+
+/* angir div rundt svar */
+.comments-container {
+	border: 4px solid #dadfea;
+	border-radius: 30px;
+	margin-top: 25px;
+	position: relative;
+}
+
+</style>
+    <!-- Page Header -->
+    <div class="row select-category ">
+        <div class="col-md-2 col-xs-2">
+            <div class="align-left" style="padding-top: 25px">
+                <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-8">
+            <h1>{{ question.title }}</h1>
+        </div>
+    </div>
+    <form action="" method="post">    {% csrf_token %}
+    <div id="question_content" class="row question-main-content question-item">
+        <!-- Vote section -->
+        <div class="col-md-2 col-xs-2 vote-block">
+            <ul>
+                <li>
+                    <button class="button" name="upvote_question" type="submit" value="{{ question.pk }}"><p class="glyphicon glyphicon-arrow-up"></p></button>
+                </li>
+                <li>
+                    <span class="vote-count">{{ question.vote_score }}</span>
+                </li>
+                <li>
+                    <a>
+                        <button class="button" name="downvote_question" type="submit" value="{{ question.pk }}"><p class="glyphicon glyphicon-arrow-down"></p></button>
+                    </a>
+                </li>
+                <li class="single-question-pump" data-original-title="" title="">
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="col-md-9 col-xs-9 q-right-content">
+            <div class="top-content"> <!-- //TODO filtrer dette i en if setning -->
+                <span class="unanswered"><i class="glyphicon glyphicon-remove"></i> No answer</span>
+                <span class="answered"><i class="glyphicon glyphicon-ok"></i> Answered</span>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div itemprop="text" class="question-content">
+                <p>{{ question.text }}</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-xs-8 question-cat">
+                    <a href="/user/{{ question.user }}">
+                        <img id="profile-image" src="/uploads/{{ question.user.image }}">
+                        <span class="author-name">{{ question.user.get_full_name }}</span>
+                    </a>
+                    <!-- user badge -->
+                    {% if question.user.role == 'P' %}
+                        <span class="user-badge" style="background-color:#780978;">Professor</span>
+                    {% elif question.user.role == 'S' %}
+                        <span class="user-badge" style="background-color:#4baf51;">Student</span>
+                    {% endif %}
+                        <span>Asked on {{ question.timestamp }} in {{ question.course.name }}</span>
+                </div>
+                <div class="col-md-4 col-xs-4 question-control">
+                    <ul>
+                        <li>
+                            <a href="" class="show-comments">
+                                Answers({{ question.pk }})  <i class="fa fa-comment"></i>
+                                <!-- //TODO fikse ordentlig telling av svar -->
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+            <div class="clearfix"></div>
+
+            <div class="comments-container collapse" style="display: block;">
+                <div class="container">
+                    <div class="panel-group">
+                        {% for answer in answers %}
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">
+                                        <a href="#{{ answer.pk }}" data-toggle="collapse">{{ answer.timestamp }} ({{ answer.vote_score }} points)</a>
+                                    </h2>
+                                </div>
+
+                                <div id="{{ answer.pk }}" class="panel-collapse collapse in">
+                                    <div class="panel-body" style="overflow-y: scroll">
+                                        <div class="col-xs-1  vote-block">
+                                            <ul>
+                                                <li>
+                                                    <a>
+                                                        <i class="glyphicon glyphicon-arrow-up"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                                        <i class="glyphicon glyphicon-arrow-down"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-8 col-xs-8 question-cat">
+                                            <p>{{ answer.text }}</p>
+                                        </div>
+                                        <div align="right" class="question-cat">
+                                        <div class="col-sm-3">
+                                               <a href="/user/{{ answer.user }}">
+                                                <img id="profile-image" src="/uploads/{{ answer.user.image }}">
+                                            <br>
+                                             <span class="author-name">{{ answer.user.get_full_name }}</span>
+                                            </a>
+                                        <br>
+                                             <!-- user badge -->
+                                                {% if answer.user.role == 'P' %}
+                                                    <span class="user-badge" style="background-color:#780978;">Professor</span>
+                                                {% elif answer.user.role == 'S' %}
+                                                    <span class="user-badge" style="background-color:#4baf51;">Student</span>
+                                                {% endif %}
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    <div style="text-align: center">
+                        <a style="" id="" href="#" class="btn-lg btn-primary">Add answer</a>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="clearfix"></div>
+    </form>
+
+{% endblock %}
