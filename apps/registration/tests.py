@@ -36,6 +36,15 @@ class UserTestCase(TestCase):
         User.objects.create_user(username='person_h', email='', school=None, first_name='', middle_name='',
                                  last_name='', image='')
 
+        # Sets up a professor with no name.
+        User.objects.create_user(username='person_i', role = 'P', email='', school=None, first_name='', middle_name='',
+                                 last_name='', image='')
+
+        # Sets up a non-professor with no name.
+        User.objects.create_user(username='person_j', role='S', email='', school=None, first_name='', middle_name='',
+                                 last_name='', image='')
+
+
     #Tests get_full_name of user with first, middle ans last name (contains 'æ', 'ø' and 'å').
     def test_person_a(self):
         person_a = User.objects.get(username = 'person_a')
@@ -73,5 +82,15 @@ class UserTestCase(TestCase):
 
     #Tests get_full_name of user with no name.
     def test_person_h(self):
-        person_g = User.objects.get(username='person_h')
-        self.assertEqual(person_g.get_full_name(), 'person_h')
+        person_h = User.objects.get(username='person_h')
+        self.assertEqual(person_h.get_full_name(), 'person_h')
+
+    #Tests if get_lecturers() returns true for a professor.
+    def test_get_lecturer(self):
+        person_i = User.objects.get(username ='person_i')
+        self.assertEqual(person_i.get_lecturers(), True)
+
+    #Tests if get_lecturers() returns false for a professor.
+    def test_get_lecturer(self):
+            person_j = User.objects.get(username='person_j')
+            self.assertEqual(person_j.get_lecturers(), False)
