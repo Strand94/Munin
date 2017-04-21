@@ -17,6 +17,9 @@ def edit_user(request):
         f_name=request.POST.get("first_name")
         m_name=request.POST.get("middle_name")
         l_name=request.POST.get("last_name")
+        epost=request.POST.get("email")
+        if user.email!=epost:
+            user.email=epost
         if user.first_name!=f_name:
             user.first_name=f_name
         if user.middle_name!=m_name:
