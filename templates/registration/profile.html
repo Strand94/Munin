@@ -17,6 +17,7 @@
 
                 <div class="align-left" style="padding-top: 25px">
                     <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+                    <a href="../my_questions" class="btn btn-primary">My questions</a>
                     {% ifequal user request.user %}
                         <a id="" href="edit_user" class="btn btn-primary">Edit user</a>
                     {% else %}

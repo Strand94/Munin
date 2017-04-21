@@ -40,3 +40,9 @@ def question(request, pk):
 
     return render(request, 'staticpages/../../templates/questions/question_page.html',
                   {'question': question_asked, 'answers': answer_list})
+
+def myQuestions(request):
+    user=request.user
+    myQues=Question.objects.filter(user=user)
+    numOfQuestions=len(myQues)
+    return render(request, 'questions/../../templates/questions/my_questions.html', {'antall':numOfQuestions})
