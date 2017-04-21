@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
-from apps.registration.form import BootstrapUserEditForm
 from .models import User
 from django.shortcuts import render, HttpResponseRedirect, redirect, render_to_response
 
