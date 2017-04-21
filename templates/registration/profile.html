@@ -14,6 +14,12 @@
         <!-- Text -->
         <div class="row">
             <div class="col-lg-12">
+
+                <div class="align-left" style="padding-top: 25px">
+                    <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+                    <a id="" href="change_user" class="btn btn-primary">Change user</a>
+                </div>
+
                 <!-- Full name display on top of page -->
                 <h1 class="frontpage-header">{{ user.get_full_name }}</h1>
                 <!-- Profile image -->
