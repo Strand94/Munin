@@ -17,7 +17,12 @@
 
                 <div class="align-left" style="padding-top: 25px">
                     <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
-                    <a id="" href="change_user" class="btn btn-primary">Change user</a>
+                    {% ifequal user request.user %}
+                        <a id="" href="edit_user" class="btn btn-primary">Edit user</a>
+                    {% else %}
+
+                    {% endifequal %}
+
                 </div>
 
                 <!-- Full name display on top of page -->
