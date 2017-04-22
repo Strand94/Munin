@@ -1,8 +1,6 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, reverse
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from apps.questions.models import Question, Answer
 from apps.courses.models import Course
-from apps.questions.forms import BootstrapQuestionForm
-import datetime
 
 
 def subject_dashboard(request, pk):
@@ -61,3 +59,10 @@ def new_question(request, pk):
 
     form = BootstrapQuestionForm(request.POST)
     return render(request, "staticpages/../../templates/questions/question_form.html", {'form': form})
+
+
+def myQuestions(request):
+    user=request.user
+    myQues=Question.objects.filter(user=user)
+    numOfQuestions=len(myQues)
+    return render(request, 'questions/../../templates/questions/my_questions.html', {'antall':numOfQuestions, 'my_Questions': myQues})
