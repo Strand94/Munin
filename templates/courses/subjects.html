@@ -10,6 +10,25 @@
         border: 0;
         background: transparent;
     }
+
+    .glyphicon {
+            font-size: 24px;
+        }
+
+        td{
+            font-size: 24px;
+            color: white;
+        }
+
+        a{
+            color: #0f0f0f;
+        }
+
+        span:hover {
+            color: #ffffff;
+            cursor: pointer;
+            cursor: hand;
+        }
     </style>
     <div class="align-left" style="padding-top: 25px">
         <a id="" href="search" class="btn btn-primary">See all courses</a>
@@ -23,10 +42,30 @@
     {% for subject in mysubjects %}
 
     <div align="center" class='clickable-row' style="margin-bottom: 20px" data-href="{{ subject.course.pk }}/dashboard">
-        <button style="width: 60%; height: 120px; background-color: {{ subject.course.hexcolour }}">
+        <button style="width: 80%; background-color: {{ subject.course.hexcolour }}">
+
             <h2 style="color: white">{{ subject.course.name }}</h2>
             <h4 style="color: white">{{ subject.course.course_id }}</h4>
-            <h6 style="color: white">{{ subject.course.lecturer.school }}</h6>
+            <!--<h6 style="color: white">{{ subject.course.lecturer.school }}</h6>-->
+
+            {% if user == subject.course.lecturer %}
+                <p style="color: white; padding-top: 1%">
+                    Subject info: <a href="/subjects/{{ subject.pk }}/info"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a>
+                    Student list: <a href="/subjects/{{ subject.pk }}/participants"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
+                    Edit: <a href="../lectures/{{ subject.pk }}/edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                </p>
+
+            {% else %}
+
+                <p style="color: white; padding-top: 1%">
+                    Subject info: <a href="/subjects/{{ subject.pk }}/info"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a>
+                    Student list: <a href="/subjects/{{ subject.pk }}/participants"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
+                </p>
+
+            {% endif %}
+
+
+
         </button>
     </div>
 
