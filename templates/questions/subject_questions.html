@@ -7,6 +7,31 @@
             cursor: pointer;
          }
 
+    .answered {
+        display: inline-block;
+        color: #fff;
+        width: 100px;
+        text-align: center;
+        line-height: 25px;
+        -moz-border-radius: 13px;
+        -webkit-border-radius: 13px;
+        border-radius: 13px; /* border radius */
+        background-color: #1abc9c; /* layer fill content */
+        margin-right: 20px;
+    }
+    .unanswered {
+        display: inline-block;
+        color: #fff;
+        width: 100px;
+        text-align: center;
+        line-height: 25px;
+        -moz-border-radius: 13px;
+        -webkit-border-radius: 13px;
+        border-radius: 13px; /* border radius */
+        background-color: #bc3f39; /* layer fill content */
+        margin-right: 20px;
+    }
+
     </style>
 
     <div class="align-left" style="padding-top: 25px">
@@ -37,7 +62,13 @@
                     <tr class='clickable-row' data-href="/course/question/{{ question.pk }}">
                         <td class="id"><strong>{{ question.title }}</strong><br>{{ question.text }}</td>
                         <td class="name">{{ question.timestamp }}</td>
-                        <td>{{ question_get_answers }}</td>
+                        <td>
+                            {% if question.get_answers > 0 %}
+                                <span class="answered"><i class="glyphicon glyphicon-ok"></i> Answered</span>
+                            {% else %}
+                                <span class="unanswered"><i class="glyphicon glyphicon-remove"></i> No answer</span>
+                            {% endif %}
+                        </td>
                         <td class="user">
                             {% if question.user %}
                                 {{ question.user.get_full_name }}
