@@ -15,41 +15,29 @@
         <a id="" href="search" class="btn btn-primary">See all courses</a>
     </div>
 
-    <h1 class="text-center">My courses </h1>
-    <form action="" method="post">
-    {% csrf_token %}
+    <h1 class="text-center" style="margin-bottom: 50px">My courses </h1>
+
+
     {% if mysubjects %}
-        <div>
-        <table class="table table-responsive table-hover">
-            <thead>
-                <tr>
-                    <th>Subject code</th>
-                    <th>Subject name</th>
-                    <th>Loaction</th>
-                    <th>Examdate</th>
-                </tr>
-            </thead>
-            <tbody class="list">
-                {% for subject in mysubjects %}
-                <tr class='clickable-row' data-href="{{ subject.course.pk }}/dashboard">
-                    <td class="id">{{ subject.course.course_id }}</td>
-                    <td class="name">{{ subject.course.name }}</td>
-                    <td class="place">{{ subject.course.lecturer.school.place }}</td>
-                    {% if subject.course.examDate %}
-                        <td>{{ subject.course.examDate }}</td>
-                    {% else %}
-                        <td></td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+
+    {% for subject in mysubjects %}
+
+    <div align="center" class='clickable-row' data-href="{{ subject.course.pk }}/dashboard">
+        <button style="width: 60%; height: 120px; margin-bottom: 20px; background-color: {{ subject.course.hexcolour }}">
+            <h2 style="color: white">{{ subject.course.name }}</h2>
+            <h4 style="color: white">{{ subject.course.course_id }}</h4>
+            <h6 style="color: white">{{ subject.course.lecturer.school }}</h6>
+        </button>
     </div>
+
+    {% endfor %}
+
     {% else %}
         <p class="text-center">You have no active courses.</p>
     {% endif %}
 
-    </form>
+
+
 {% endblock content %}
 {% block script %}
 <script>
@@ -59,5 +47,14 @@ jQuery(document).ready(function($) {
 
     });
 });
+
+function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.round(Math.random() * 15)];
+        }
+        return color;
+    }
 </script>
 {% endblock %}

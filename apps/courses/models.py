@@ -7,6 +7,7 @@ class Course(models.Model):
     name = models.CharField(max_length=50)
     course_id = models.CharField(max_length=7)
     lecturer = models.ForeignKey(User)
+    hexcolour = models.CharField(max_length=7, default='#1b6d85')
     YEAR_CHOICES = []
     for r in range(2000, (datetime.datetime.now().year + 2)):
         YEAR_CHOICES.append((r, r))
