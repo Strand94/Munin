@@ -10,6 +10,26 @@
         /* Giving rows in table click prompt. Add both to support more browsers. */
             cursor: pointer;
             cursor: hand;}
+
+    .wrapper{width:100%;}
+
+    @media (min-width: 500px){
+        .box{float:left;}
+        .box:nth-child(1){
+           width:69%;
+        }
+        .box:nth-child(2){
+           width:1%;
+        }
+        .box:nth-child(3){
+           width:30%;
+        }
+    }
+
+    @media (max-width: 499px) {
+
+    }
+
     </style>
 
     <div class="align-left" style="padding-top: 25px">
@@ -21,9 +41,9 @@
     <h1 class="text-center"> {{ subject.name }} - {{ subject.course_id }}</h1>
 
 
-    <div class="container">
+    <div class="container wrapper">
         <div class="panel-group">
-             <div class="panel panel-default">
+             <div class="panel panel-default box">
                 <div class="panel-heading">
                    <h2 class="panel-title">
                       <a href="#NewestQuestions" data-toggle="collapse">Questions</a>
@@ -90,7 +110,8 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="box"></div> <!-- OBS! denne div'en må være her, hvis ikke blir det "skjevt" mellom de to boksene. -->
+            <div class="panel panel-default box">
                 <div class="panel-heading">
                     <h2 class="panel-title">
                         <a href="#QuestionPage" data-toggle="collapse">Information</a>
@@ -98,7 +119,12 @@
                 </div>
                 <div id="QuestionPage" class="panel-collapse collapse in">
                     <div class="panel-body" style="overflow-y: scroll">
-                        <p style="text-align: center">Litt statistikk her, ant upvotes, ant ubesvarte spm, osv...</p>
+                        <p><strong>Lecturer:</strong> {{ subject.lecturer.first_name }} {{ subject.lecturer.middle_name }} {{ subject.lecturer.last_name }}</p>
+                        <p><strong>Contact information:</strong> {{ subject.lecturer.email }}</p>
+                        <p><strong>Examdate:</strong> {{ subject.examDate }}</p>
+                        <p><strong>About {{ subject.name }}:</strong></p>
+                        <p>{{ subject.about }}</p>
+                        <p>Eveventuelt litt statistikk her, ant upvotes, ant ubesvarte spm, osv...</p>
                     </div>
                 </div>
             </div>
