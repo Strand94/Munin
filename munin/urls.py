@@ -44,9 +44,10 @@ urlpatterns = [
     url(r'^subjects/(?P<pk>[0-9]+)/participants', subject_participants, name="subject_participants"),
     url(r'^subjects/(?P<pk>[0-9]+)/info', subject_detail, name="subject_detail"),
     url(r'^subjects/(?P<pk>[0-9]+)/dashboard', subject_dashboard, name="subject_dashboard"),
-    url(r'^subjects/(?P<pk>[0-9]+)/questions', subject_questions, name="subject_questions"),
+    url(r'^subjects/(?P<pk>[0-9]+)/questions/$', subject_questions, name="subject_questions"),
     url(r'^lectures/new/$', new_course, name='new_course'),
     url(r'^lectures/(?P<pk>[0-9]+)/edit/$', edit_course, name='edit__course'),
+    url(r'^subjects/(?P<pk>[0-9]+)/questions/ask', new_question, name="ask_question"),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

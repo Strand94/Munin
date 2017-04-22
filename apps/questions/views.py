@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, reverse
 from apps.questions.models import Question, Answer
 from apps.courses.models import Course
+from apps.questions.forms import BootstrapQuestionForm
+import datetime
 
 
 def subject_dashboard(request, pk):
@@ -40,3 +42,22 @@ def question(request, pk):
 
     return render(request, 'staticpages/../../templates/questions/question_page.html',
                   {'question': question_asked, 'answers': answer_list})
+
+
+def new_question(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    if request.method == "POST":
+        form = BootstrapQuestionForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            if(request.POST.get("anonymous")):
+                question.user = None
+            else:
+                question.user = request.user
+            question.course = course
+            question.timestamp = datetime.datetime.now()
+            question.save()
+            return HttpResponseRedirect("/course/question/"+str(question.pk))
+
+    form = BootstrapQuestionForm(request.POST)
+    return render(request, "staticpages/../../templates/questions/question_form.html", {'form': form})

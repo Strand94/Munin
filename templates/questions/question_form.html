@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="align-left" style="padding-top: 25px">
+        <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+    </div>
+    <div>
+    <h3> Ask Question </h3>
+     <form method="POST" class="post-form">{% csrf_token %}
+        <div class="form-group">
+            <label for="id_title">Question title:</label>
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            <label for="id_title">Question text:</label>
+            {{ form.text }}
+        </div>
+        <div class="center-text">
+            <label class="form-check-label" style="height: 40px">
+                <input type="checkbox" name="anonymous" class="form-check-input">
+                Ask anonymous
+            </label>
+        </div>
+        <div class="center-text">
+            <button style="text-align: center" type="submit" value="Save" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    </div>
+{% endblock %}
