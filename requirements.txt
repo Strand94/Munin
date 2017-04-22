@@ -1,4 +1,4 @@
-appdirs==1.4.0
+appdirs==1.4.3
 Django==1.10.5
 django-forms-bootstrap==3.0.1
 django-nose==1.4.4
