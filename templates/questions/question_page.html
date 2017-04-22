@@ -157,8 +157,13 @@ ul {
 
         <div class="col-md-9 col-xs-9 q-right-content">
             <div class="top-content"> <!-- //TODO filtrer dette i en if setning -->
-                <span class="unanswered"><i class="glyphicon glyphicon-remove"></i> No answer</span>
-                <span class="answered"><i class="glyphicon glyphicon-ok"></i> Answered</span>
+                {% if question.get_answers > 0 %}
+                    <span class="answered"><i class="glyphicon glyphicon-ok"></i> Answered</span>
+                {% else %}
+                    <span class="unanswered"><i class="glyphicon glyphicon-remove"></i> No answer</span>
+                {% endif %}
+
+
             </div>
 
             <div class="clearfix"></div>
@@ -187,7 +192,7 @@ ul {
                     <ul>
                         <li>
                             <a href="" class="show-comments">
-                                Answers({{ question.pk }})  <i class="fa fa-comment"></i>
+                                Answers({{ question.get_answers }})  <i class="fa fa-comment"></i>
                                 <!-- //TODO fikse ordentlig telling av svar -->
                             </a>
                         </li>
