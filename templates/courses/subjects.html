@@ -22,8 +22,8 @@
 
     {% for subject in mysubjects %}
 
-    <div align="center" class='clickable-row' data-href="{{ subject.course.pk }}/dashboard">
-        <button style="width: 60%; height: 120px; margin-bottom: 20px; background-color: {{ subject.course.hexcolour }}">
+    <div align="center" class='clickable-row' style="margin-bottom: 20px" data-href="{{ subject.course.pk }}/dashboard">
+        <button style="width: 60%; height: 120px; background-color: {{ subject.course.hexcolour }}">
             <h2 style="color: white">{{ subject.course.name }}</h2>
             <h4 style="color: white">{{ subject.course.course_id }}</h4>
             <h6 style="color: white">{{ subject.course.lecturer.school }}</h6>
