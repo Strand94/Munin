@@ -3,8 +3,84 @@
 {% block title %}{{ user.get_full_name }}{% endblock title %}
 {% block content %}
 
-    <h1>My questions</h1>
+ <!-- vil at den ser noe slik ut http://preview.themeforest.net/item/qaengine-question-and-answer-wordpress-theme/full_screen_preview/7972399 -->
+    <style>
+      .clickable-row{
+        /* Giving rows in table click proampt. Add both to support more browsers. */
+            cursor: pointer;
+         }
 
-    <p>Antall spørsmål stilt av deg: {{ antall }}</p>
+    </style>
 
-{% endblock content %}
+    <div class="align-left" style="padding-top: 25px">
+        <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+    </div>
+
+
+
+    <h1 class="text-center"> My Questions </h1>
+
+    <div class="center-block">
+        <div id="users">
+            <div class="text-center">
+                <input style="width: 50%" class="search" placeholder="Search" />
+            </div>
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Time</th>
+                        <th>status</th>
+                        <th>Asked by</th>
+                        <th>Points</th>
+                        <th>Subject</th>
+                    </tr>
+                </thead>
+                <!-- IMPORTANT, class="list" have to be at tbody -->
+                <tbody class="list">
+                    {% for question in my_Questions %}
+                    <tr class='clickable-row' data-href="/course/question/{{ question.pk }}">
+                        <td class="id"><strong>{{ question.title }}</strong><br>{{ question.text }}</td>
+                        <td class="name">{{ question.timestamp }}</td>
+                        <td>{{ question_get_answers }}</td>
+                        <td class="user">
+                            {% if question.user %}
+                                {{ question.user.get_full_name }}
+                            {% else %}
+                                Anonymous
+                            {% endif %}
+                        </td>
+                        <td>{{ question.vote_score }}</td>
+                        <td>{{ question.course }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% if antall == 0 %}
+        <p>You haven't asked a question yet. Go to a subject page to ask a question.</p>
+    {% endif %}
+
+{% endblock %}
+
+{% block script %}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script type="text/javascript">
+    var options = {
+    valueNames: [ 'question', 'timestamp', 'asked_question']
+                    };
+
+    var userList = new List('users', options);
+
+    jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+
+    });
+});
+</script>
+
+{% endblock script %}

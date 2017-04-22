@@ -45,4 +45,4 @@ def myQuestions(request):
     user=request.user
     myQues=Question.objects.filter(user=user)
     numOfQuestions=len(myQues)
-    return render(request, 'questions/../../templates/questions/my_questions.html', {'antall':numOfQuestions})
+    return render(request, 'questions/../../templates/questions/my_questions.html', {'antall':numOfQuestions, 'my_Questions': myQues})
