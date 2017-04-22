@@ -40,6 +40,21 @@ def question(request, pk):
             question.votes.down(user.id)
             return HttpResponseRedirect("#")
 
+        elif 'add_answer' in request.POST:
+            answer_text = request.POST.get('add_answer_box')
+            if not answer_text:
+                print("du har ingen svar, din fjott!")
+            else:
+                question_pk = request.POST.get('add_answer')
+                question = Question.objects.get(pk=question_pk)
+                answer = Answer.objects.create(question=question)
+                answer.text = answer_text
+                answer.user = request.user
+                answer.timestamp = datetime.datetime.now()
+                answer.save()
+                print("Ask question activated")
+                print(answer_text)
+
     return render(request, 'staticpages/../../templates/questions/question_page.html',
                   {'question': question_asked, 'answers': answer_list})
 

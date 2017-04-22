@@ -117,8 +117,6 @@ ul {
 
 /* angir div rundt svar */
 .comments-container {
-	border: 4px solid #dadfea;
-	border-radius: 30px;
 	margin-top: 25px;
 	position: relative;
 }
@@ -169,6 +167,8 @@ ul {
                 <p>{{ question.text }}</p>
             </div>
 
+
+
             <div class="row">
                 <div class="col-md-8 col-xs-8 question-cat">
                     <a href="/user/{{ question.user }}">
@@ -197,6 +197,16 @@ ul {
         </div>
 
             <div class="clearfix"></div>
+
+            <div class="row select-category ">
+                <div class="col-md-2 col-xs-2">
+                    <div class="align-left" style="padding-top: 25px">
+                    </div>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <h3>Answers</h3>
+                </div>
+            </div>
 
             <div class="comments-container collapse" style="display: block;">
                 <div class="container">
@@ -248,8 +258,20 @@ ul {
                                 </div>
                             </div>
                         {% endfor %}
-                    <div style="text-align: center">
-                        <a style="" id="" href="#" class="btn-lg btn-primary">Add answer</a>
+
+
+
+
+
+                    <div style="text-align: center; margin-top: 30px">
+                        <div align="center" class="comment">
+                            <textarea name="add_answer_box"  placeholder="Write your answer here..." cols="70" rows="8" maxlength="2500"></textarea>
+                        </div>
+                        <div style="margin-top: 30px">
+                             <a>
+                                <button class="btn-lg btn-primary" name="add_answer" type="submit" value="{{ question.pk }}">Add answer</button>
+                            </a>
+                        </div>
                     </div>
 
                     </div>
