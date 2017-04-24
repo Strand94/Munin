@@ -41,6 +41,21 @@ def question(request, pk):
             question.votes.down(user.id)
             return HttpResponseRedirect("#")
 
+        elif 'upvote_answer' in request.POST:
+            answer_pk = request.POST.get('upvote_answer')
+            answer = Answer.objects.get(pk=answer_pk)
+            if answer.votes.exists(user.id):
+                answer.votes.delete(user.id)
+            else:
+                answer.votes.up(user.id)
+            return HttpResponseRedirect("#")
+
+        elif 'downvote_answer' in request.POST:
+            answer_pk = request.POST.get('downvote_answer')
+            answer = Answer.objects.get(pk=answer_pk)
+            answer.votes.down(user.id)
+            return HttpResponseRedirect("#")
+
         elif 'add_answer' in request.POST:
             answer_text = request.POST.get('add_answer_box')
             if not answer_text:

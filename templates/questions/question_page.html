@@ -233,15 +233,11 @@ ul {
                                     <div class="panel-body" style="overflow-y: scroll">
                                         <div class="col-xs-1  vote-block">
                                             <ul>
-                                                <li>
-                                                    <a>
-                                                        <i class="glyphicon glyphicon-arrow-up"></i>
-                                                    </a>
+                                                 <li>
+                                                     <button class="button" name="upvote_answer" type="submit" value="{{ answer.pk }}"><p class="glyphicon glyphicon-arrow-up"></p></button>
                                                 </li>
-                                                <li>
-                                                    <a>
-                                                        <i class="glyphicon glyphicon-arrow-down"></i>
-                                                    </a>
+                                                 <li>
+                                                     <button class="button" name="downvote_answer" type="submit" value="{{ answer.pk }}"><p class="glyphicon glyphicon-arrow-down"></p></button>
                                                 </li>
                                             </ul>
                                         </div>
