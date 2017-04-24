@@ -176,15 +176,20 @@ ul {
 
             <div class="row">
                 <div class="col-md-8 col-xs-8 question-cat">
-                    <a href="/user/{{ question.user }}">
-                        <img id="profile-image" src="/uploads/{{ question.user.image }}">
-                        <span class="author-name">{{ question.user.get_full_name }}</span>
-                    </a>
-                    <!-- user badge -->
-                    {% if question.user.role == 'P' %}
-                        <span class="user-badge" style="background-color:#780978;">Professor</span>
-                    {% elif question.user.role == 'S' %}
-                        <span class="user-badge" style="background-color:#4baf51;">Student</span>
+                    {% if question.user %}
+                        <!-- User badge -->
+                        <a href="/user/{{ question.user }}">
+                            <img id="profile-image" src="/uploads/{{ question.user.image }}">
+                            <span class="author-name">{{ question.user.get_full_name }}</span>
+                        </a>
+                        <!-- user badge -->
+                        {% if question.user.role == 'P' %}
+                            <span class="user-badge" style="background-color:#780978;">Professor</span>
+                        {% elif question.user.role == 'S' %}
+                            <span class="user-badge" style="background-color:#4baf51;">Student</span>
+                        {% endif %}
+                    {% else %}
+                        <span class="user-badge" style="background-color:#00080e;">Anonymous</span>
                     {% endif %}
                         <span>Asked on {{ question.timestamp }} in {{ question.course.name }}</span>
                 </div>
