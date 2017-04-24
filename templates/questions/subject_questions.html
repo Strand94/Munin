@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block link %}
+        <link rel="stylesheet" type="text/css" href="{% static "lib/css/bootstrap-sortable.css" %}">
+{% endblock %}
 {% block content %}
     <!-- vil at den ser noe slik ut http://preview.themeforest.net/item/qaengine-question-and-answer-wordpress-theme/full_screen_preview/7972399 -->
     <style>
@@ -46,7 +50,7 @@
             <div class="text-center">
                 <input style="width: 50%" class="search" placeholder="Search" />
             </div>
-            <table class="table table-responsive table-hover">
+            <table class="table table-responsive table-hover sortable">
                 <thead>
                     <tr>
                         <th>Question</th>
@@ -63,10 +67,12 @@
                         <td class="id"><strong>{{ question.title }}</strong><br>{{ question.text }}</td>
                         <td class="name">{{ question.timestamp }}</td>
                         <td>
-                            {% if question.get_answers > 0 %}
-                                <span class="answered"><i class="glyphicon glyphicon-ok"></i> Answered</span>
+                            {% if question.get_answers == 1 %}
+                                <span class="answered">{{ question.get_answers }} Answer</span>
+                            {% elif question.get_answers > 1  %}
+                                <span class="answered">{{ question.get_answers }} Answers</span>
                             {% else %}
-                                <span class="unanswered"><i class="glyphicon glyphicon-remove"></i> No answer</span>
+                                <span class="unanswered">0 answers</span>
                             {% endif %}
                         </td>
                         <td class="user">
@@ -90,21 +96,26 @@
 
 {% block script %}
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <script type="text/javascript" src="{% static "lib/js/bootstrap-sortable.js" %}"></script>
 
-<script type="text/javascript">
-    var options = {
-    valueNames: ['id', 'user']
-                    };
+    <script type="text/javascript" src="{% static "lib/js/moment.min.js" %}"></script>
 
-    var userList = new List('users', options);
 
-    jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
+    <script type="text/javascript">
+        var options = {
+        valueNames: ['id', 'user']
+                        };
+
+        var userList = new List('users', options);
+
+        jQuery(document).ready(function($) {
+        $(".clickable-row").click(function() {
+            window.location = $(this).data("href");
+
+        });
     });
-});
 </script>
 
 {% endblock script %}
