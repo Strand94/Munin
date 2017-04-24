@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 {% load static %}
 
 {% block content %}
@@ -13,7 +14,7 @@
             {{ form.name }}
         </div>
             <div class="form-group">
-                <label for="id_title">Course ID:</label>
+                <label for="course_id">Course ID:</label>
                 {{ form.course_id }}
             </div>
          <div class="form-group">
@@ -26,11 +27,23 @@
         </div>
          <div class="form-group">
             <label for="id_title">Exam date:</label>
-            {{ form.examDate}}
+            {{ form.examDate|add_class:"form-control form_datetime" }}
         </div>
         <div class="center-text">
             <button style="text-align: center" type="submit" value="Save" class="btn btn-primary">Submit</button>
         </div>
+
     </form>
     </div>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript" src="{% static 'lib/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/js/bootstrap-datetimepicker.no.js' %}"
+            charset="UTF-8"></script>
+    <script type="text/javascript">
+        $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd',pickTime: false});
+    </script>
+{% endblock script %}
+{% block link %}
+    <link rel="stylesheet" type="text/css" href="{% static "lib/css/bootstrap-datetimepicker.min.css" %}">
 {% endblock %}

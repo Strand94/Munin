@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+
 from .forms import BootstrapCourseForm
 from .models import Course, CourseInfo
 from apps.registration.models import User
 
-
+@login_required
 def lecture(request):
     user = request.user
     user_lectures = Course.objects.all().filter(lecturer=user)
 
     return render(request, "staticpages/../../templates/courses/lectures.html", {'lectures':user_lectures})
 
-
+@login_required
 def subject(request):
     user = request.user
     user_subjetcs = CourseInfo.objects.all().filter(students__username__contains=user.username)
@@ -35,6 +37,7 @@ def subject(request):
                    "mysubjects": user_subjetcs}
                   )
 
+@login_required
 def subject_participants(request, pk):
     course = get_object_or_404(Course, pk=pk)
     courseinfo = CourseInfo.objects.all().filter(course__course_id__exact=course.course_id).first()
@@ -42,6 +45,7 @@ def subject_participants(request, pk):
     return render(request, 'staticpages/../../templates/courses/subject_members.html', {"course":course, "participants":participants})
 
 
+@login_required
 def subject_detail(request, pk):
     course = get_object_or_404(Course, pk=pk)
     this_course = CourseInfo.objects.all().filter(course__course_id__exact=course.course_id).first()
@@ -61,7 +65,7 @@ def subject_detail(request, pk):
     return render(request, 'staticpages/../../templates/courses/subject_detail.html', {'subject': course, 'isEnrolled': is_enrolled
         ,'userRole': userRole})
 
-
+@login_required
 def subject_search(request):
     user = request.user
     user_subjects = CourseInfo.objects.all().filter(students__username__contains=user.username)
@@ -74,7 +78,7 @@ def subject_search(request):
                    "mysubjects": user_subjects}
                   )
 
-
+@login_required
 def new_course(request):
     if request.method == "POST":
         form = BootstrapCourseForm(request.POST)
@@ -97,6 +101,7 @@ def new_course(request):
     return render(request, "staticpages/../../templates/courses/course_form.html", {'form': form})
 
 
+@login_required
 def edit_course(request, pk):
     course = get_object_or_404(Course, pk=pk)
     if request.method == "POST":

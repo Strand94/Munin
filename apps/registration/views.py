@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
-
+from django.contrib.auth.decorators import login_required
 from .models import User
 from django.shortcuts import render, HttpResponseRedirect, redirect, render_to_response
 
@@ -11,6 +11,7 @@ class Profile(LoginRequiredMixin, generic.DetailView):
     slug_field = 'username'
     template_name = 'registration/profile.html'
 
+@login_required()
 def edit_user(request):
     user = request.user
     if request.method == 'POST':

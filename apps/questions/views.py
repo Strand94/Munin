@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from apps.questions.models import Question, Answer
 from apps.courses.models import Course
 from apps.questions.forms import BootstrapQuestionForm
 import datetime
 
-
+@login_required
 def subject_dashboard(request, pk):
     course = get_object_or_404(Course, pk=pk)
     question_list = Question.objects.filter(course=course).order_by('-timestamp')[0:3]
@@ -12,14 +13,14 @@ def subject_dashboard(request, pk):
     return render(request, 'staticpages/../../templates/questions/subject_dashboard.html',
                   {'subject': course,'top': top, 'questions': question_list})
 
-
+@login_required
 def subject_questions(request, pk):
     course = get_object_or_404(Course, pk=pk)
     question_list = Question.objects.filter(course=course).order_by('-timestamp')
     return render(request, 'staticpages/../../templates/questions/subject_questions.html',
                   {'subject': course, 'questions': question_list})
 
-
+@login_required
 def question(request, pk):
     question_asked = get_object_or_404(Question, pk=pk)
     answer_list = Answer.objects.filter(question=question_asked).order_by('-vote_score', '-timestamp')
@@ -59,6 +60,7 @@ def question(request, pk):
                   {'question': question_asked, 'answers': answer_list})
 
 
+@login_required
 def new_question(request, pk):
     course = get_object_or_404(Course, pk=pk)
     if request.method == "POST":
@@ -78,7 +80,7 @@ def new_question(request, pk):
     form = BootstrapQuestionForm(request.POST)
     return render(request, "staticpages/../../templates/questions/question_form.html", {'form': form})
 
-
+@login_required
 def myQuestions(request):
     user=request.user
     myQues=Question.objects.filter(user=user)
