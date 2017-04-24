@@ -81,6 +81,14 @@ def new_course(request):
         if form.is_valid():
             course = form.save(commit=False)
             course.lecturer = request.user
+
+            colorlist = ['#f7c225', '#8a2ce8']
+            number_of_questions = len(Course.objects.all())
+            if (number_of_questions%3)==0:
+                course.hexcolour=colorlist[0]
+            elif (number_of_questions%3)==1:
+                course.hexcolour=colorlist[1]
+
             course.save()
             courseinfo = CourseInfo.objects.create(course=course)
             courseinfo.save()
