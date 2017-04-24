@@ -83,6 +83,6 @@ def new_question(request, pk):
 @login_required
 def myQuestions(request):
     user=request.user
-    myQues=Question.objects.filter(user=user)
+    myQues=Question.objects.filter(asked_by=user.username)
     numOfQuestions=len(myQues)
     return render(request, 'questions/../../templates/questions/my_questions.html', {'antall':numOfQuestions, 'my_Questions': myQues})
