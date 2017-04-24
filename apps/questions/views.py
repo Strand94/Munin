@@ -69,6 +69,7 @@ def new_question(request, pk):
                 question.user = None
             else:
                 question.user = request.user
+            question.asked_by = request.user.username
             question.course = course
             question.timestamp = datetime.datetime.now()
             question.save()
