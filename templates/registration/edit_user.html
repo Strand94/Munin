@@ -8,33 +8,19 @@
     {{ form.errors }}
     {{ form.non_field_errors }}
     <form action="" method="POST" class="post-form">{% csrf_token %}
-        <div>
-            <label for="id_title">Username:</label>
-            <input class="form-control" name="username" value="{{ user.username }}">
-        </div>
-        <div>
-            <label for="id_title">Email:</label>
-            <input class="form-control" name="email" value="{{ user.email }}">
-        </div>
-        <div>
+        <div style="padding-top: 35px">
             <label for="id_title">First Name:</label>
             <input class="form-control" name="first_name" value="{{ user.first_name}}">
         </div>
-        <div>
+        <div style="padding-top: 35px">
             <label for="id_title">Middle name:</label>
             <input class="form-control" name="middle_name" value="{{ user.middle_name}}">
         </div>
-        <div>
+        <div style="padding-top: 35px">
             <label for="id_title">Last name:</label>
             <input class="form-control" name="last_name" value="{{ user.last_name}}">
         </div>
-        <div>
-            <label for="id_title">Image:</label>
-            <div align="center">
-                <img src="/uploads/{{user.image}}" style="width: 250px; height: 250px">
-            </div>
-        </div>
-        <div class="center-text">
+        <div class="center-text" style="padding-top: 50px">
             <button style="text-align: center" type="submit" value="Save" class="btn btn-primary">Submit</button>
         </div>
     </form>
