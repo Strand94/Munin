@@ -11,7 +11,6 @@ def lecture(request):
     user_lectures = Course.objects.all().filter(lecturer=user)
 
     if request.method == 'POST':
-        if 'delete' in request.POST:
             id = request.POST.get('delete')
             print(id)
             subject = Course.objects.filter(course_id__exact=id).delete()
