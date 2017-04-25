@@ -10,6 +10,13 @@ def lecture(request):
     user = request.user
     user_lectures = Course.objects.all().filter(lecturer=user)
 
+    if request.method == 'POST':
+        if 'delete' in request.POST:
+            id = request.POST.get('delete')
+            print(id)
+            subject = Course.objects.filter(course_id__exact=id).delete()
+            subject_info = CourseInfo.objects.filter(course=subject).delete()
+
     return render(request, "staticpages/../../templates/courses/lectures.html", {'lectures':user_lectures})
 
 @login_required

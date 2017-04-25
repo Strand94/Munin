@@ -56,6 +56,10 @@ def question(request, pk):
             answer.votes.down(user.id)
             return HttpResponseRedirect("#")
 
+        elif 'delete_answer' in request.POST:
+            answer_pk = request.POST.get("delete_answer")
+            answer = Answer.objects.filter(pk=answer_pk).delete()
+
         elif 'add_answer' in request.POST:
             answer_text = request.POST.get('add_answer_box')
             if not answer_text:

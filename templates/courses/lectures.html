@@ -29,27 +29,39 @@
         <a id="" href="/subjects/search" class="btn btn-primary">See all courses</a>
     </div>
     <h1 class="text-center">My courses </h1>
-
-   <table class="table table-responsive table-hover">
-            <thead>
-                <tr>
-                    <th>Subject code</th>
-                    <th>Subject name</th>
-                    <th class="col-xs-1">Subject info</th>
-                    <th class="col-xs-1">Student list</th>
-                    <th class="col-xs-1">Edit</th>
-                </tr>
-            </thead>
-            <tbody class="list">
-                {% for subject in lectures %}
+    <form action="" method="post">    {% csrf_token %}
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Subject code</th>
+                <th>Subject name</th>
+                <th class="col-xs-1">Subject info</th>
+                <th class="col-xs-1">Student list</th>
+                <th class="col-xs-1">Edit</th>
+                <th class="col-xs-1">Remove</th>
+            </tr>
+        </thead>
+        <tbody class="list">
+            {% for subject in lectures %}
                 <tr>
                     <td class="id">{{ subject.course_id }}</td>
                     <td class="name">{{ subject.name }}</td>
                     <td><a href="/subjects/{{ subject.pk }}/info"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
                     <td><a href="/subjects/{{ subject.pk }}/participants"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a></td>
                     <td><a href="{{ subject.pk }}/edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                    <td><button type="submit" onclick="return clicked();"  value="{{ subject.course_id }}" name="delete" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;"><span style="color: #b92c28" class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+    </form>
 {% endblock content %}
+
+{% block script %}
+<script>
+function clicked() {
+    return confirm('Are you sure you want to delete the course?');
+}
+</script>
+
+{% endblock %}

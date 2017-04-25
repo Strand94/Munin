@@ -233,6 +233,11 @@ ul {
                                     <div class="panel-body" style="overflow-y: scroll">
                                         <div class="col-xs-1  vote-block">
                                             <ul>
+                                                {% if answer.user == request.user %}
+                                                    <li>
+                                                         <button class="button" style="background-color: #b92c28" name="delete_answer" type="submit" value="{{ answer.pk }}"><p class="glyphicon glyphicon-remove"></p></button>
+                                                    </li>
+                                                {% endif %}
                                                  <li>
                                                      <button class="button" name="upvote_answer" type="submit" value="{{ answer.pk }}"><p class="glyphicon glyphicon-arrow-up"></p></button>
                                                 </li>
@@ -264,10 +269,6 @@ ul {
                                 </div>
                             </div>
                         {% endfor %}
-
-
-
-
 
                     <div style="text-align: center; margin-top: 30px">
                         <div align="center" class="comment">
