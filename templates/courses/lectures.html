@@ -20,7 +20,10 @@
             cursor: pointer;
             cursor: hand;
         }
-
+        .clickable-row{
+        /* Giving rows in table click prompt. Add both to support more browsers. */
+            cursor: pointer;
+            cursor: hand;}
 
     </style>
     <div class="align-left" style="padding-top: 25px">
@@ -43,7 +46,7 @@
         </thead>
         <tbody class="list">
             {% for subject in lectures %}
-                <tr>
+                <tr class='clickable-row' data-href="/subjects/{{ subject.pk }}/dashboard">
                     <td class="id">{{ subject.course_id }}</td>
                     <td class="name">{{ subject.name }}</td>
                     <td><a href="/subjects/{{ subject.pk }}/info"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
@@ -58,7 +61,16 @@
 {% endblock content %}
 
 {% block script %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+
 <script>
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+
+    });
+});
+
 function clicked() {
     return confirm('Are you sure you want to delete the course?');
 }

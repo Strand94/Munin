@@ -39,7 +39,7 @@
     </style>
 
     <div class="align-left" style="padding-top: 25px">
-        <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
+        <a style="" id="" href="/subjects/{{subject.pk }}/dashboard" class="btn btn-primary">Back</a>
         <a style="" id="" href="ask" class="btn btn-primary">Ask question</a>
     </div>
 
@@ -54,10 +54,10 @@
                 <thead>
                     <tr>
                         <th>Question</th>
-                        <th>Time</th>
-                        <th>status</th>
                         <th>Asked by</th>
                         <th>Points</th>
+                        <th>status</th>
+                        <th>Time</th>
                     </tr>
                 </thead>
                 <!-- IMPORTANT, class="list" have to be at tbody -->
@@ -65,7 +65,15 @@
                     {% for question in questions %}
                     <tr class='clickable-row' data-href="/course/question/{{ question.pk }}">
                         <td class="id"><strong>{{ question.title }}</strong><br>{{ question.text }}</td>
-                        <td class="name">{{ question.timestamp }}</td>
+                        <td class="user">
+                            {% if question.user %}
+                                {{ question.user.get_full_name }}
+                            {% else %}
+                                Anonymous
+                            {% endif %}
+                        </td>
+                        <td style="font-size: 30px">{{ question.vote_score }}</td
+                        >
                         <td>
                             {% if question.get_answers == 1 %}
                                 <span class="answered">{{ question.get_answers }} Answer</span>
@@ -75,14 +83,8 @@
                                 <span class="unanswered">0 answers</span>
                             {% endif %}
                         </td>
-                        <td class="user">
-                            {% if question.user %}
-                                {{ question.user.get_full_name }}
-                            {% else %}
-                                Anonymous
-                            {% endif %}
-                        </td>
-                        <td>{{ question.vote_score }}</td>
+                        <td class="name">{{ question.timestamp }}</td>
+
                     </tr>
                 {% endfor %}
                 </tbody>
