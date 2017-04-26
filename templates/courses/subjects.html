@@ -31,6 +31,7 @@
         }
     </style>
     <div class="align-left" style="padding-top: 25px">
+        <input class="btn btn-primary" type=button value="Back" onClick="history.go(-1);">
         <a id="" href="search" class="btn btn-primary">See all courses</a>
     </div>
 
@@ -41,7 +42,7 @@
 
     {% for subject in mysubjects %}
 
-    <div align="center" class='clickable-row' style="margin-bottom: 20px" data-href="{{ subject.course.pk }}/dashboard">
+    <div align="center" class='clickable-row' style="margin-bottom: 20px" data-href="{{ subject.course.pk }}/questions">
         <button style="width: 80%; background-color: {{ subject.course.hexcolour }}">
 
             <h2 style="color: white">{{ subject.course.name }}</h2>

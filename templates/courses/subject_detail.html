@@ -3,7 +3,11 @@
 
 
     <div class="align-left" style="padding-top: 25px">
-        <a style="" id="" href="/subjects/" class="btn btn-primary">Back</a>
+       {% if userRole == 'S' %}
+            <a style="" id="" href="/subjects/" class="btn btn-primary">Back</a>
+        {% else %}
+            <a style="" id="" href="/lectures/" class="btn btn-primary">Back</a>
+        {% endif %}
     </div>
 
     <h1 class="text-center"> {{ subject.name }} - {{ subject.course_id }}</h1>

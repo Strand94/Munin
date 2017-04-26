@@ -46,7 +46,7 @@
         </thead>
         <tbody class="list">
             {% for subject in lectures %}
-                <tr class='clickable-row' data-href="/subjects/{{ subject.pk }}/dashboard">
+                <tr class='clickable-row' data-href="/subjects/{{ subject.pk }}/questions">
                     <td class="id">{{ subject.course_id }}</td>
                     <td class="name">{{ subject.name }}</td>
                     <td><a href="/subjects/{{ subject.pk }}/info"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
