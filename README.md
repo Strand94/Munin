@@ -1,5 +1,5 @@
 # TDT4140: Group 95
-[![Build Status](https://travis-ci.org/Strand94/TDT4140.svg?branch=master)](https://travis-ci.org/Strand94/TDT4140)
+[![Build Status](https://travis-ci.org/Strand94/Munin.svg?branch=master)](https://travis-ci.org/Strand94/Munin)
 [![Coverage Status](https://coveralls.io/repos/github/Strand94/TDT4140/badge.svg)](https://coveralls.io/github/Strand94/TDT4140)
 [![Munin: Version](https://img.shields.io/badge/munin-v1.0.0-blue.svg)](https://github.com/Strand94/TDT4140)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
